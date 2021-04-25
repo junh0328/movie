@@ -2,12 +2,26 @@ import React from 'react';
 import logo from '../logo.svg';
 import { Counter } from '../features/counter/Counter';
 import '../App.css';
+import styled from '@emotion/styled'
+
+const Button = styled.button`
+  padding: 32px;
+  background-color: hotpink;
+  font-size: 24px;
+  border-radius: 4px;
+  color: black;
+  font-weight: bold;
+  &:hover {
+    color: white;
+  }
+`
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <Button>Ash button</Button>
         <Counter />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
