@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from '@emotion/styled'
+import React from "react";
+import styled from "@emotion/styled";
 
 const Button = styled.button`
   padding: 32px;
@@ -11,7 +11,7 @@ const Button = styled.button`
   &:hover {
     color: white;
   }
-`
+`;
 
 function App() {
   return (
