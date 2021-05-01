@@ -3,8 +3,8 @@ import axios from "axios";
 import dotenv from "dotenv";
 
 dotenv.config();
-// console.log('key 생성: ', process.env.REACT_APP_API);
 
+// 타입 이름도 후에 정해야할 것 같아요 !, 지금은 그냥 API 확인용으로 뽑아보려고 적었습니다
 type movie = { id: number; name: string };
 type original = { id: number; name: string; backdrop_path: string };
 type toprate = {
@@ -68,10 +68,6 @@ const About: FC = () => {
     }
   };
 
-  // if (upLoad && movies !== []) {
-  //   console.log('데이터 들어옴', movies);
-  // }
-
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       {upLoad && movies !== [] ? (
@@ -103,7 +99,6 @@ const About: FC = () => {
                     alt={original.name}
                     style={{ width: 400, marginRight: 10 }}
                   />
-                  {/* <img src={`https://image.tmdb.org/t/p/original/${props.props.poster_path}`} */}
                 </div>
               ))}
             </div>
@@ -126,7 +121,6 @@ const About: FC = () => {
                     alt={topRate.name}
                     style={{ width: 400, marginRight: 10 }}
                   />
-                  {/* <img src={`https://image.tmdb.org/t/p/original/${props.props.poster_path}`} */}
                 </div>
               ))}
             </div>
