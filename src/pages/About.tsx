@@ -1,14 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import axios from "axios";
 import dotenv from "dotenv";
 
 dotenv.config();
 // console.log('key 생성: ', process.env.REACT_APP_API);
 
-const About = () => {
-  const [movies, setMovies] = useState([]);
-  const [orginals, setOriginals] = useState([]);
-  const [topRates, setTopRates] = useState([]);
+type movie = { id: number; name: string };
+type original = { id: number; name: string; backdrop_path: string };
+type toprate = {
+  id: number;
+  name: string;
+  vote_average: number;
+  vote_count: number;
+  title: string;
+  backdrop_path: string;
+};
+
+const About: FC = () => {
+  const [movies, setMovies] = useState<movie[]>([]);
+  const [orginals, setOriginals] = useState<original[]>([]);
+  const [topRates, setTopRates] = useState<toprate[]>([]);
   const [upLoad, setUpLoad] = useState(false);
 
   useEffect(() => {
