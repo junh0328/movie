@@ -27,7 +27,7 @@ const About: FC = () => {
   const [orginals, setOriginals] = useState<Original[]>([]);
   const [topRates, setTopRates] = useState<Toprate[]>([]);
 
-  const [upLoad, setUpLoad] = useState(false);
+  const [upLoad, setUpLoad] = useState<Boolean>(false);
 
   useEffect(() => {
     if (upLoad === false) {
