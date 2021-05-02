@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Home from "@/pages/Home";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/about">
-            <p>about</p>
+            <About />
           </Route>
           <Route path="/users">
             <p>users</p>
