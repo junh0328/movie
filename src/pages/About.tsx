@@ -5,9 +5,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // 타입 이름도 후에 정해야할 것 같아요 !, 지금은 그냥 API 확인용으로 뽑아보려고 적었습니다
-type movie = { id: number; name: string };
-type original = { id: number; name: string; backdrop_path: string };
-type toprate = {
+type Movie = { id: number; name: string };
+type Original = { id: number; name: string; backdrop_path: string };
+type Toprate = {
   id: number;
   name: string;
   vote_average: number;
@@ -16,21 +16,24 @@ type toprate = {
   backdrop_path: string;
 };
 
+const API_KEY = process.env.REACT_APP_API;
+const BASE_URL = `https://api.themoviedb.org/3`;
+const Genre = `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`;
+const NetFlixOriginals = `${BASE_URL}/discover/tv?api_key=${API_KEY}&with_networks=213`;
+const TopRated = `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=en-US`;
+
 const About: FC = () => {
-  const [movies, setMovies] = useState<movie[]>([]);
-  const [orginals, setOriginals] = useState<original[]>([]);
-  const [topRates, setTopRates] = useState<toprate[]>([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [orginals, setOriginals] = useState<Original[]>([]);
+  const [topRates, setTopRates] = useState<Toprate[]>([]);
+
   const [upLoad, setUpLoad] = useState(false);
 
   useEffect(() => {
-    fetchApi();
-  }, []);
-
-  const API_KEY = process.env.REACT_APP_API;
-  const BASE_URL = `https://api.themoviedb.org/3`;
-  const Genre = `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`;
-  const NetFlixOriginals = `${BASE_URL}/discover/tv?api_key=${API_KEY}&with_networks=213`;
-  const TopRated = `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=en-US`;
+    if (upLoad === false) {
+      fetchApi();
+    }
+  }, [upLoad]);
 
   const fetchApi = async () => {
     try {
@@ -70,7 +73,7 @@ const About: FC = () => {
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
-      {upLoad && movies !== [] ? (
+      {upLoad ? (
         <div
           style={{
             display: " flex",
@@ -89,41 +92,54 @@ const About: FC = () => {
             넷플릭스 오리지널 데이터 불러오기
           </button>
           {orginals && (
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <ul
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                listStyle: "none",
+                paddingLeft: 0,
+              }}
+            >
               {orginals.map((original) => (
-                <div key={original.id}>
-                  <p>{original.id}</p>
-                  <p>{original.name}</p>
+                <li key={original.id}>
+                  <li>{original.id}</li>
+                  <li>{original.name}</li>
                   <img
                     src={`https://image.tmdb.org/t/p/original/${original.backdrop_path}`}
                     alt={original.name}
                     style={{ width: 400, marginRight: 10 }}
                   />
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           )}
           <button style={{ marginTop: 20 }} onClick={fetchTopRated}>
             넷플릭스 Top Rated 데이터 불러오기
           </button>
           {topRates && (
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <ul
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                paddingLeft: 0,
+              }}
+            >
               {topRates.map((topRate) => (
-                <div key={topRate.id}>
-                  <p>{topRate.id}</p>
-                  <p>
+                <li key={topRate.id} style={{ listStyle: "none" }}>
+                  <li>{topRate.id}</li>
+                  <li>
                     🌟 {topRate.vote_average}, Count with {topRate.vote_count}
-                  </p>
+                  </li>
 
-                  <p>{topRate.title}</p>
+                  <li>{topRate.title}</li>
                   <img
                     src={`https://image.tmdb.org/t/p/original/${topRate.backdrop_path}`}
                     alt={topRate.name}
                     style={{ width: 400, marginRight: 10 }}
                   />
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           )}
         </div>
       ) : (
