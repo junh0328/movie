@@ -1,16 +1,12 @@
 import React from "react";
-import { Button } from "./style";
+import { BillboardWrap } from "./style";
+import spiderman from "../images/spiderman.png";
 
 function Home() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Button>Ash button</Button>{" "}
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </header>
-    </div>
+    <BillboardWrap>
+      <img src={spiderman} alt="spiderman" />
+    </BillboardWrap>
   );
 }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "antd/dist/antd.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Menu, Dropdown, Switch as Switcher } from "antd";
@@ -24,6 +24,18 @@ import Home from "@/pages/Home";
 import About from "./pages/About";
 
 function App(): JSX.Element {
+  const [scrolling, setScrolling] = useState<Boolean>(false);
+
+  const handleScroll = () => {
+    if (window.scrollY === 0) {
+      setScrolling(false);
+    } else if (window.scrollY > 30) {
+      setScrolling(true);
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
   const menu = (
     <Menu style={{ padding: 20, wordBreak: "break-word" }}>
       <Menu.Item key="0" style={{ wordBreak: "inherit", width: "250px" }}>
@@ -35,6 +47,12 @@ function App(): JSX.Element {
       </Menu.Item>
     </Menu>
   );
+
+  useEffect(() => {
+    if (scrolling) {
+      console.log("scrolled!");
+    }
+  });
 
   return (
     <Router>
@@ -48,7 +66,7 @@ function App(): JSX.Element {
       />
       <PinningHeader>
         <PinningHeaderContainer>
-          <MainHeader>
+          <MainHeader className={scrolling ? "black" : ""}>
             <a href="/">
               <img src={neflix_logo} alt="netflix_logo" />
             </a>
