@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const PinningHeader = styled.div`
+  z-index: 9999;
   position: fixed;
   top: 0;
   width: 100%;
@@ -38,7 +39,7 @@ export const MainHeader = styled.div`
     vertical-align: middle;
     cursor: pointer;
     & img {
-      width: 92.5px;
+      width: 110.5px;
     }
   }
   & ul {
@@ -48,7 +49,7 @@ export const MainHeader = styled.div`
     list-style: none;
     & li {
       & a {
-        font-size: 14px;
+        font-size: 12px;
         color: #e5e5e5;
       }
       & a:hover {
@@ -90,7 +91,8 @@ export const Footer = styled.div`
 export const SocialLinks = styled.div`
   margin-bottom: 1rem;
   & a {
-    margin-right: 15px;
+    font-size: 28px;
+    margin-right: 25px;
     color: gray;
   }
 `;

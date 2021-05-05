@@ -19,6 +19,7 @@ import { FaSearch } from "react-icons/fa";
 import { BsFillBellFill } from "react-icons/bs";
 import { GoSettings } from "react-icons/go";
 import { RiArrowDropDownFill } from "react-icons/ri";
+import { ImFacebook2, ImInstagram, ImTwitter, ImYoutube } from "react-icons/im";
 
 import Home from "@/pages/Home";
 import About from "./pages/About";
@@ -124,10 +125,18 @@ function App(): JSX.Element {
 
       <Footer>
         <SocialLinks>
-          <a href="/">페이스북</a>
-          <a href="/">인스타그램</a>
-          <a href="/">트위터</a>
-          <a href="/">유튜브</a>
+          <a href="/">
+            <ImFacebook2 />
+          </a>
+          <a href="/">
+            <ImInstagram />
+          </a>
+          <a href="/">
+            <ImTwitter />
+          </a>
+          <a href="/">
+            <ImYoutube />
+          </a>
         </SocialLinks>
         <MemberFooterLink>
           <ul>
