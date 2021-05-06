@@ -5,7 +5,7 @@ import {
   SecondaryNavigation,
 } from "./style";
 import { Dropdown, Menu, Switch as Switcher } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BsFillBellFill } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
 import { GoSettings } from "react-icons/go";
@@ -32,17 +32,16 @@ function Header(): JSX.Element {
         <span style={{ marginRight: 10, marginBottom: 10 }}>
           작품 상세 정보
         </span>
-        <Switcher />
+        <Switcher
+          onClick={() => {
+            alert("토글 설정!");
+          }}
+        />
         <div>임시 토글</div>
       </Menu.Item>
     </Menu>
   );
 
-  useEffect(() => {
-    if (scrolling) {
-      console.log("scrolled!");
-    }
-  });
   return (
     <PinningHeader>
       <PinningHeaderContainer>
@@ -66,11 +65,25 @@ function Header(): JSX.Element {
           </ul>
           <SecondaryNavigation>
             <div>
-              <div>
+              <div
+                onClick={() => {
+                  alert("검색");
+                }}
+              >
                 <FaSearch />
               </div>
-              <div>키즈</div>
-              <div>
+              <div
+                onClick={() => {
+                  alert("키즈");
+                }}
+              >
+                키즈
+              </div>
+              <div
+                onClick={() => {
+                  alert("알람");
+                }}
+              >
                 <BsFillBellFill />
               </div>
               <div>

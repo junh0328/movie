@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Global, css } from "@emotion/react";
 import Home from "@/pages/Home";
 import About from "./pages/About";
+import User from "@/pages/User";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
@@ -24,7 +25,7 @@ function App(): JSX.Element {
           <About />
         </Route>
         <Route path="/users">
-          <p>users</p>
+          <User />
         </Route>
         <Route path="/">
           <Home />

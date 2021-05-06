@@ -1,4 +1,3 @@
-import "antd/dist/antd.css";
 import {
   SocialLinks,
   MemberFooterLink,
@@ -12,16 +11,32 @@ function Footer(): JSX.Element {
   return (
     <FooterWrap>
       <SocialLinks>
-        <a href="/">
+        <a
+          href="https://www.facebook.com/NetflixKR"
+          target="_blank"
+          rel="noreferrer"
+        >
           <ImFacebook2 />
         </a>
-        <a href="/">
+        <a
+          href="https://www.instagram.com/netflixkr/"
+          target="_blank"
+          rel="noreferrer"
+        >
           <ImInstagram />
         </a>
-        <a href="/">
+        <a
+          href="https://twitter.com/netflixkr"
+          target="_blank"
+          rel="noreferrer"
+        >
           <ImTwitter />
         </a>
-        <a href="/">
+        <a
+          href="https://www.youtube.com/channel/UCiEEF51uRAeZeCo8CJFhGWw/featured"
+          target="_blank"
+          rel="noreferrer"
+        >
           <ImYoutube />
         </a>
       </SocialLinks>

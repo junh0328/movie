@@ -1,19 +1,9 @@
 import React, { FC, useEffect, useState } from "react";
 import axios from "axios";
 import dotenv from "dotenv";
-import {
-  BillboardWrap,
-  InfoTitleWrapper,
-  InfoMetaLayer,
-  InfoWrapper,
-  LogoAndTextMetaLayer,
-  MainWrapper,
-} from "./style";
-import spiderman from "../images/spiderman.png";
-import logoTitle from "../images/logoTitle.png";
-import { BiInfoCircle } from "react-icons/bi";
-import { AiFillCaretRight } from "react-icons/ai";
+import { MainWrapper } from "./style";
 import { Original, Toprate } from "@/types/common";
+import Billboard from "@/components/Billboard";
 
 dotenv.config();
 
@@ -40,7 +30,7 @@ const Home: FC = () => {
       const {
         data: { results },
       } = await axios.get(NetFlixOriginals);
-      setOriginals(results.slice(0, 4));
+      setOriginals(results.slice(0, 3));
       setUpLoad(true);
     } catch (error) {
       console.error(error);
@@ -52,39 +42,17 @@ const Home: FC = () => {
       const {
         data: { results },
       } = await axios.get(TopRated);
-      console.log("load TopRated datas", results);
-      setTopRates(results.slice(0, 4));
+      setTopRates(results.slice(0, 3));
     } catch (error) {
       console.error(error);
     }
   };
   return (
     <>
-      <BillboardWrap>
-        <img src={spiderman} alt="spiderman" />
-        <InfoMetaLayer>
-          <LogoAndTextMetaLayer>
-            <InfoTitleWrapper>
-              <img src={logoTitle} alt="spidermanLogo" />
-            </InfoTitleWrapper>
-            <InfoWrapper>
-              유럽 여행에서 사랑을 고백하려 한 피터 파커. 근데 맙소사, 새로운
-              악당의 출현이라니, 게다가 닉 퓨리가 찾아와 도움을 청하네. 이렇게
-              된 이상 또 다시 세상을 구할 수밖에.
-            </InfoWrapper>
-            <button>
-              <AiFillCaretRight />
-              재생
-            </button>
-            <button>
-              <BiInfoCircle />
-              상세 정보
-            </button>
-          </LogoAndTextMetaLayer>
-        </InfoMetaLayer>
-      </BillboardWrap>
+      {/* 메인 이미지가 뜨는 컴포넌트 현재는 스파이더맨 이미지 */}
+      <Billboard />
 
-      {/* Main 작성해야 할 부분이 이 밑입니다. */}
+      {/* Main 작성해야 할 부분이 이 밑입니다. 슬릭 작업 후에 재사용 가능한 컴포넌트로 변경 */}
 
       <MainWrapper>
         {upLoad ? (
@@ -118,12 +86,14 @@ const Home: FC = () => {
               >
                 {orginals.map((original) => (
                   <li key={original.id}>
-                    <li>{original.name}</li>
-                    <img
-                      src={`https://image.tmdb.org/t/p/original/${original.backdrop_path}`}
-                      alt={original.name}
-                      style={{ width: 400, marginRight: 10 }}
-                    />
+                    <ul>
+                      <li>{original.name}</li>
+                      <img
+                        src={`https://image.tmdb.org/t/p/original/${original.backdrop_path}`}
+                        alt={original.name}
+                        style={{ width: 400, marginRight: 10 }}
+                      />
+                    </ul>
                   </li>
                 ))}
               </ul>
@@ -148,16 +118,19 @@ const Home: FC = () => {
               >
                 {topRates.map((topRate) => (
                   <li key={topRate.id} style={{ listStyle: "none" }}>
-                    <li>
-                      🌟 {topRate.vote_average}, Count with {topRate.vote_count}
-                    </li>
+                    <ul>
+                      <li>
+                        🌟 {topRate.vote_average}, Count with{" "}
+                        {topRate.vote_count}
+                      </li>
 
-                    <li>{topRate.title}</li>
-                    <img
-                      src={`https://image.tmdb.org/t/p/original/${topRate.backdrop_path}`}
-                      alt={topRate.name}
-                      style={{ width: 400, marginRight: 10 }}
-                    />
+                      <li>{topRate.title}</li>
+                      <img
+                        src={`https://image.tmdb.org/t/p/original/${topRate.backdrop_path}`}
+                        alt={topRate.name}
+                        style={{ width: 400, marginRight: 10 }}
+                      />
+                    </ul>
                   </li>
                 ))}
               </ul>

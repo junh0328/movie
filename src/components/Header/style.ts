@@ -71,6 +71,7 @@ export const SecondaryNavigation = styled.div`
   height: 100%;
 
   & div {
+    cursor: pointer;
     margin-right: 20px;
     display: block;
     font-size: 14px;
