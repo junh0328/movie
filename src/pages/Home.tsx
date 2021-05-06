@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import axios from "axios";
 import dotenv from "dotenv";
-
 import {
   BillboardWrap,
   InfoTitleWrapper,
@@ -14,18 +13,9 @@ import spiderman from "../images/spiderman.png";
 import logoTitle from "../images/logoTitle.png";
 import { BiInfoCircle } from "react-icons/bi";
 import { AiFillCaretRight } from "react-icons/ai";
+import { Original, Toprate } from "@/types/common";
 
 dotenv.config();
-
-type Original = { id: number; name: string; backdrop_path: string };
-type Toprate = {
-  id: number;
-  name: string;
-  vote_average: number;
-  vote_count: number;
-  title: string;
-  backdrop_path: string;
-};
 
 const API_KEY = process.env.REACT_APP_API;
 const BASE_URL = `https://api.themoviedb.org/3`;

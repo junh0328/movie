@@ -1,20 +1,9 @@
 import React, { FC, useEffect, useState } from "react";
 import axios from "axios";
 import dotenv from "dotenv";
+import { Movie, Original, Toprate } from "@/types/common";
 
 dotenv.config();
-
-// 타입 이름도 후에 정해야할 것 같아요 !, 지금은 그냥 API 확인용으로 뽑아보려고 적었습니다
-type Movie = { id: number; name: string };
-type Original = { id: number; name: string; backdrop_path: string };
-type Toprate = {
-  id: number;
-  name: string;
-  vote_average: number;
-  vote_count: number;
-  title: string;
-  backdrop_path: string;
-};
 
 const API_KEY = process.env.REACT_APP_API;
 const BASE_URL = `https://api.themoviedb.org/3`;
