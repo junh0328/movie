@@ -5,28 +5,16 @@ import {
   SecondaryNavigation,
 } from "./style";
 import { Dropdown, Menu, Switch as Switcher } from "antd";
-import React, { useEffect, useState } from "react";
 import { BsFillBellFill } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
 import { GoSettings } from "react-icons/go";
 import { RiArrowDropDownFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import neflix_logo from "../../images/neflix_logo.png";
+import useHandleScroll from "@/hooks/useHandleScroll";
 
 function Header(): JSX.Element {
-  const [scrolling, setScrolling] = useState<Boolean>(false);
-
-  const handleScroll = () => {
-    if (window.scrollY === 0) {
-      setScrolling(false);
-    } else if (window.scrollY > 30) {
-      setScrolling(true);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-  }, [scrolling]);
+  const { scrolling } = useHandleScroll();
 
   const menu = (
     <Menu style={{ padding: 20, wordBreak: "break-word" }}>

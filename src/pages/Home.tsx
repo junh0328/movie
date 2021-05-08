@@ -19,10 +19,14 @@ const Home: FC = () => {
     }
   }, [upLoad]);
 
-  const fetchAPIs = () => {
-    Promise.all([fetchNetflixOriginals(), fetchTopRated()]).then(() => {
-      setUpLoad(true);
-    });
+  const fetchAPIs = async () => {
+    try {
+      await Promise.all([fetchNetflixOriginals(), fetchTopRated()]).then(() => {
+        setUpLoad(true);
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const fetchNetflixOriginals = async () => {

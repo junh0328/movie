@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const useHandleScroll = () => {
+export default function useHandleScroll() {
   const [scrolling, setScrolling] = useState<Boolean>(false);
 
   const handleScroll = () => {
@@ -11,7 +11,9 @@ const useHandleScroll = () => {
     }
   };
 
-  return { scrolling, setScrolling, handleScroll };
-};
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  }, [scrolling]);
 
-export default useHandleScroll;
+  return { scrolling, setScrolling, handleScroll };
+}
