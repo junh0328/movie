@@ -14,3 +14,7 @@ export type Toprate = {
   title: string;
   backdrop_path: string;
 };
+
+export type ResponseType = {
+  results: [];
+};

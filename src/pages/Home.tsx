@@ -2,15 +2,11 @@ import React, { FC, useEffect, useState } from "react";
 import axios from "axios";
 import dotenv from "dotenv";
 import { MainWrapper } from "./style";
-import { Original, Toprate } from "@/types/common";
+import { Original, Toprate, ResponseType } from "@/types/common";
 import Billboard from "@/components/Billboard";
+import { NetFlixOriginals, TopRated } from "@/apis/fetchAPI";
 
 dotenv.config();
-
-const API_KEY = process.env.REACT_APP_API;
-const BASE_URL = `https://api.themoviedb.org/3`;
-const NetFlixOriginals = `${BASE_URL}/discover/tv?api_key=${API_KEY}&with_networks=213`;
-const TopRated = `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=en-US`;
 
 const Home: FC = () => {
   const [orginals, setOriginals] = useState<Original[]>([]);
@@ -19,19 +15,22 @@ const Home: FC = () => {
 
   useEffect(() => {
     if (upLoad === false) {
-      fetchNetflixOriginals();
-      fetchTopRated();
+      fetchAPIs();
     }
   }, [upLoad]);
 
-  // upLoad 를 통해서 상태관리를 하고 있는데, 한쪽만 패칭되도 보여주니, 둘다 패칭된 후에 컴포넌트를 보여줄 수 있도록 만들어야 할 듯
+  const fetchAPIs = () => {
+    Promise.all([fetchNetflixOriginals(), fetchTopRated()]).then(() => {
+      setUpLoad(true);
+    });
+  };
+
   const fetchNetflixOriginals = async () => {
     try {
       const {
         data: { results },
-      } = await axios.get(NetFlixOriginals);
+      } = await axios.get<ResponseType>(NetFlixOriginals);
       setOriginals(results.slice(0, 3));
-      setUpLoad(true);
     } catch (error) {
       console.error(error);
     }
@@ -41,12 +40,13 @@ const Home: FC = () => {
     try {
       const {
         data: { results },
-      } = await axios.get(TopRated);
+      } = await axios.get<ResponseType>(TopRated);
       setTopRates(results.slice(0, 3));
     } catch (error) {
       console.error(error);
     }
   };
+
   return (
     <>
       {/* 메인 이미지가 뜨는 컴포넌트 현재는 스파이더맨 이미지 */}

@@ -6,8 +6,8 @@ import {
   InfoWrapper,
   LogoAndTextMetaLayer,
 } from "./style";
-import spiderman from "../../images/spiderman.png";
-import logoTitle from "../../images/logoTitle.png";
+import spiderman from "@/images/spiderman.png";
+import logoTitle from "@/images/logoTitle.png";
 import { AiFillCaretRight } from "react-icons/ai";
 import { BiInfoCircle } from "react-icons/bi";
 

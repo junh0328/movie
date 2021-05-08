@@ -25,7 +25,7 @@ export const MemberFooterLink = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
-    margin: 0 0 14px 0;
+    margin: 0 0 14px;
     padding: 0;
     margin-bottom: 14px;
     & li {

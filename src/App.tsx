@@ -1,23 +1,17 @@
 import "antd/dist/antd.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Global, css } from "@emotion/react";
+import { Global } from "@emotion/react";
 import Home from "@/pages/Home";
 import About from "./pages/About";
 import User from "@/pages/User";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import reset from "./theme/globalStyle";
 
 function App(): JSX.Element {
   return (
     <Router>
-      <Global
-        styles={css`
-          body {
-            background-color: #141414;
-            color: #e5e5e5;
-          }
-        `}
-      />
+      <Global styles={reset} />
       {/* components의 Header */}
       <Header />
       <Switch>

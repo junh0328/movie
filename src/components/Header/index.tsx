@@ -5,7 +5,7 @@ import {
   SecondaryNavigation,
 } from "./style";
 import { Dropdown, Menu, Switch as Switcher } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsFillBellFill } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
 import { GoSettings } from "react-icons/go";
@@ -24,7 +24,9 @@ function Header(): JSX.Element {
     }
   };
 
-  window.addEventListener("scroll", handleScroll);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  }, [scrolling]);
 
   const menu = (
     <Menu style={{ padding: 20, wordBreak: "break-word" }}>

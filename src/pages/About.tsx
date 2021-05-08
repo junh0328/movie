@@ -1,15 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 import axios from "axios";
 import dotenv from "dotenv";
-import { Movie, Original, Toprate } from "@/types/common";
+import { Movie, Original, ResponseType, Toprate } from "@/types/common";
+import { Genre, NetFlixOriginals, TopRated } from "@/apis/fetchAPI";
 
 dotenv.config();
-
-const API_KEY = process.env.REACT_APP_API;
-const BASE_URL = `https://api.themoviedb.org/3`;
-const Genre = `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`;
-const NetFlixOriginals = `${BASE_URL}/discover/tv?api_key=${API_KEY}&with_networks=213`;
-const TopRated = `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=en-US`;
 
 const About: FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -40,7 +35,7 @@ const About: FC = () => {
     try {
       const {
         data: { results },
-      } = await axios.get(NetFlixOriginals);
+      } = await axios.get<ResponseType>(NetFlixOriginals);
       console.log("load original datas", results);
       setOriginals(results);
     } catch (error) {
@@ -52,7 +47,7 @@ const About: FC = () => {
     try {
       const {
         data: { results },
-      } = await axios.get(TopRated);
+      } = await axios.get<ResponseType>(TopRated);
       console.log("load TopRated datas", results);
       setTopRates(results);
     } catch (error) {
