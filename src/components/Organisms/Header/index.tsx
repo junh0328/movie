@@ -10,7 +10,7 @@ import { FaSearch } from "react-icons/fa";
 import { GoSettings } from "react-icons/go";
 import { RiArrowDropDownFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import neflix_logo from "../../images/neflix_logo.png";
+import neflix_logo from "@/images/neflix_logo.png";
 import useHandleScroll from "@/hooks/useHandleScroll";
 
 function Header(): JSX.Element {

@@ -1,4 +1,4 @@
-import Billboard from "@/components/Billboard";
+import Billboard from "@/components/Organisms/Billboard";
 import React from "react";
 
 const Users = () => {
