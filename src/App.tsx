@@ -1,41 +1,32 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import "antd/dist/antd.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Global } from "@emotion/react";
 import Home from "@/pages/Home";
 import About from "./pages/About";
+import User from "@/pages/User";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import reset from "./theme/globalStyle";
 
-function App() {
+function App(): JSX.Element {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <p>users</p>
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
+      <Global styles={reset} />
+      {/* components의 Header */}
+      <Header />
+      <Switch>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/users">
+          <User />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+      {/* components의 Footer */}
+      <Footer />
     </Router>
   );
 }
