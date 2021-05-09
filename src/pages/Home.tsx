@@ -17,7 +17,7 @@ const Home: FC = () => {
     if (upLoad === false) {
       fetchAPIs();
     }
-  }, [upLoad]);
+  });
 
   const fetchAPIs = async () => {
     try {
