@@ -1,8 +1,19 @@
+//status
+export type StatusType = "idle" | "loading" | "failed";
+
+//createAsyncThunk input status error type
+export type MyKnownError = {
+  errorMessage: string;
+};
+
 export type Ash = {
   name: string;
 };
 
-export type Movie = { id: number; name: string };
+export type Movie = {
+  id: number;
+  name: string;
+};
 
 export type Original = { id: number; name: string; backdrop_path: string };
 

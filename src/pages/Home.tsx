@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import { MainWrapper } from "./style";
 import { Original, Toprate, ResponseType } from "@/types/common";
 import Billboard from "@/components/Organisms/Billboard";
-import { NetFlixOriginals, TopRated } from "@/apis/fetchAPI";
+import { NetFlixOriginals, TopRated } from "@/apis";
 
 dotenv.config();
 
