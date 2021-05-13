@@ -3,7 +3,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 import { MainWrapper } from "./style";
 import { Original, Toprate, ResponseType } from "@/types/common";
-import Billboard from "@/components/Organisms/Billboard";
+import Billboard from "@/components/organisms/Billboard";
 import { NetFlixOriginals, TopRated } from "@/apis";
 
 dotenv.config();

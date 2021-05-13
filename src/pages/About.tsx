@@ -1,17 +1,12 @@
 import React, { FC, useEffect } from "react";
-import dotenv from "dotenv";
+import { useDispatch } from "react-redux";
 
 import { useRootState } from "@/hooks/useRootState";
-import { useDispatch } from "react-redux";
 import { genreAsync, getGenre } from "@/store/genre/genreSlice";
-
-dotenv.config();
 
 const About: FC = () => {
   const dispatch = useDispatch();
   const { genre } = useRootState(getGenre);
-
-  console.log(genre);
 
   useEffect(() => {
     dispatch(genreAsync());
