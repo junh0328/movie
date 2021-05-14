@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import Text from ".";
+import Text from '.';
 
 const desc = {
   component: Text,
-  title: "Atoms/Text",
+  title: 'Atoms/Text',
 };
 
 export const Default = (): JSX.Element => {

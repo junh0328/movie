@@ -1,17 +1,17 @@
-import React, { FC, useEffect, useState } from "react";
-import axios from "axios";
-import dotenv from "dotenv";
-import { MainWrapper } from "./style";
-import { Original, Toprate, ResponseType } from "@/types/common";
-import Billboard from "@/components/organisms/Billboard";
-import { NetFlixOriginals, TopRated } from "@/apis";
+import React, { FC, useEffect, useState } from 'react';
+import axios from 'axios';
+import dotenv from 'dotenv';
+import { MainWrapper } from './style';
+import { Original, Toprate, ResponseType } from '@/types/common';
+import Billboard from '@/components/organisms/Billboard';
+import { NetFlixOriginals, TopRated } from '@/apis';
 
 dotenv.config();
 
 const Home: FC = () => {
   const [orginals, setOriginals] = useState<Original[]>([]);
   const [topRates, setTopRates] = useState<Toprate[]>([]);
-  const [upLoad, setUpLoad] = useState<Boolean>(false);
+  const [upLoad, setUpLoad] = useState<boolean>(false);
 
   useEffect(() => {
     if (upLoad === false) {
@@ -62,18 +62,18 @@ const Home: FC = () => {
         {upLoad ? (
           <div
             style={{
-              display: " flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              width: "220px",
+              display: ' flex',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              width: '220px',
             }}
           >
             <div
               style={{
                 marginTop: 20,
-                color: "white",
-                fontSize: "1.2rem",
-                fontWeight: "bolder",
+                color: 'white',
+                fontSize: '1.2rem',
+                fontWeight: 'bolder',
               }}
               onClick={fetchNetflixOriginals}
             >
@@ -82,9 +82,9 @@ const Home: FC = () => {
             {orginals && (
               <ul
                 style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  listStyle: "none",
+                  display: 'flex',
+                  justifyContent: 'center',
+                  listStyle: 'none',
                   paddingLeft: 0,
                 }}
               >
@@ -105,9 +105,9 @@ const Home: FC = () => {
             <div
               style={{
                 marginTop: 20,
-                color: "white",
-                fontSize: "1.2rem",
-                fontWeight: "bolder",
+                color: 'white',
+                fontSize: '1.2rem',
+                fontWeight: 'bolder',
               }}
             >
               넷플릭스 Top Rated
@@ -115,17 +115,16 @@ const Home: FC = () => {
             {topRates && (
               <ul
                 style={{
-                  display: "flex",
-                  justifyContent: "center",
+                  display: 'flex',
+                  justifyContent: 'center',
                   paddingLeft: 0,
                 }}
               >
                 {topRates.map((topRate) => (
-                  <li key={topRate.id} style={{ listStyle: "none" }}>
+                  <li key={topRate.id} style={{ listStyle: 'none' }}>
                     <ul>
                       <li>
-                        🌟 {topRate.vote_average}, Count with{" "}
-                        {topRate.vote_count}
+                        🌟 {topRate.vote_average}, Count with {topRate.vote_count}
                       </li>
 
                       <li>{topRate.title}</li>

@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const FooterWrap = styled.div`
   max-width: 980px;

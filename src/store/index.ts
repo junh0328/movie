@@ -1,5 +1,5 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import genreReducer from "@/store/genre/genreSlice";
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import genreReducer from '@/store/genre/genreSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,9 +14,4 @@ export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
 
 //thunk type
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;

@@ -1,7 +1,7 @@
-//status
-export type StatusType = "idle" | "loading" | "failed";
+// status
+export type StatusType = 'idle' | 'loading' | 'failed';
 
-//createAsyncThunk input status error type
+// createAsyncThunk input status error type
 export type MyKnownError = {
   errorMessage: string;
 };

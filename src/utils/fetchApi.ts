@@ -1,4 +1,4 @@
-import axios, { Method } from "axios";
+import axios, { Method } from 'axios';
 
 export type ErrorType = { error?: 1 | true; message?: string };
 

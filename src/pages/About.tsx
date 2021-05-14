@@ -1,8 +1,8 @@
-import React, { FC, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { FC, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { useRootState } from "@/hooks/useRootState";
-import { genreAsync, getGenre } from "@/store/genre/genreSlice";
+import { useRootState } from '@/hooks/useRootState';
+import { genreAsync, getGenre } from '@/store/genre/genreSlice';
 
 const About: FC = () => {
   const dispatch = useDispatch();
@@ -13,14 +13,14 @@ const About: FC = () => {
   }, [dispatch]);
 
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
       {true ? (
         <div
           style={{
-            display: " flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            width: "160px",
+            display: ' flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            width: '160px',
           }}
         >
           <h2>데이터 로딩 완료</h2>
