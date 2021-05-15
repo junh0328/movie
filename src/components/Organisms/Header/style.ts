@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const PinningHeader = styled.div`
   z-index: 9999;

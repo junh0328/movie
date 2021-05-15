@@ -1,12 +1,12 @@
-import "antd/dist/antd.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Global } from "@emotion/react";
-import Home from "@/pages/Home";
-import About from "@/pages/About";
-import User from "@/pages/User";
-import Footer from "@/components/Organisms/Footer";
-import Header from "@/components/Organisms/Header";
-import reset from "@/theme/globalStyle";
+import 'antd/dist/antd.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Global } from '@emotion/react';
+import Home from '@/pages/Home';
+import About from '@/pages/About';
+import User from '@/pages/User';
+import Footer from '@/components/organisms/Footer';
+import Header from '@/components/organisms/Header';
+import reset from '@/theme/globalStyle';
 
 function App(): JSX.Element {
   return (
