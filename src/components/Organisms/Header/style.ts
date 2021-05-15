@@ -69,15 +69,43 @@ export const SecondaryNavigation = styled.div`
   right: 4%;
   top: 0;
   height: 100%;
+`;
 
-  & div {
-    cursor: pointer;
-    margin-right: 20px;
-    display: block;
-    font-size: 14px;
-    & div {
-      display: inline-block;
-      font-size: 14px;
+export const NavElement = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 20px;
+
+  &.search-focused {
+    transition: 500ms;
+    background-color: black;
+    border: 1px solid #e5e5e5;
+    padding: 5px;
+
+    & form {
+      background: black;
     }
   }
+  & input {
+    border: none;
+    margin-left: 10px;
+    width: 200px;
+    color: white;
+    background-color: transparent;
+  }
+  & input:focus {
+    outline: none;
+  }
+  & :last-child:hover svg:last-child {
+    transition: 500ms;
+    transform: rotate(-180deg);
+  }
+`;
+
+export const ToggleWrapper = styled.div`
+  margin-top: 5px;
+  word-break: keep-all;
 `;
