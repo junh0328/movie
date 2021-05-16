@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {
   MainHeader,
   NavElement,
@@ -6,18 +5,7 @@ import {
   PinningHeaderContainer,
   SecondaryNavigation,
   ToggleWrapper,
-} from "./style";
-import { Dropdown, Menu, Switch as Switcher } from "antd";
-import { BsFillBellFill } from "react-icons/bs";
-import { FaSearch } from "react-icons/fa";
-import { GoSettings } from "react-icons/go";
-import { RiArrowDropDownFill } from "react-icons/ri";
-import { Link } from "react-router-dom";
-import neflix_logo from "@/images/neflix_logo.png";
-import useHandleScroll from "@/hooks/useHandleScroll";
-import { useCallback, useEffect, useState } from "react";
-=======
-import { MainHeader, PinningHeader, PinningHeaderContainer, SecondaryNavigation } from './style';
+} from './style';
 import { Dropdown, Menu, Switch as Switcher } from 'antd';
 import { BsFillBellFill } from 'react-icons/bs';
 import { FaSearch } from 'react-icons/fa';
@@ -26,11 +14,11 @@ import { RiArrowDropDownFill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import neflix_logo from '@/images/neflix_logo.png';
 import useHandleScroll from '@/hooks/useHandleScroll';
->>>>>>> main
+import React, { useCallback, useEffect, useState } from 'react';
 
 function Header(): JSX.Element {
   const { scrolling } = useHandleScroll();
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const [focus, setFocus] = useState(false);
   const [onswitch, onsetSwitch] = useState(false);
 
@@ -38,7 +26,7 @@ function Header(): JSX.Element {
     onsetSwitch((prev) => !prev);
   }, []);
 
-  const onChangeInput = (e: any) => {
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
@@ -47,7 +35,7 @@ function Header(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    console.log("focus 상태:", focus);
+    console.log('focus 상태:', focus);
   }, [focus]);
 
   /*
@@ -58,36 +46,15 @@ function Header(): JSX.Element {
   */
 
   const menu = (
-<<<<<<< HEAD
-    <Menu style={{ padding: 20, wordBreak: "keep-all" }}>
-      <Menu.Item
-        key="0"
-        style={{ wordBreak: "keep-all", width: "200px", height: "auto" }}
-      >
-        <span
-          style={{ marginRight: 10, marginBottom: 10, wordBreak: "keep-all" }}
-        >
-          작품 상세 정보
-        </span>
+    <Menu style={{ padding: 20, wordBreak: 'keep-all' }}>
+      <Menu.Item key="0" style={{ wordBreak: 'keep-all', width: '200px', height: 'auto' }}>
+        <span style={{ marginRight: 10, marginBottom: 10, wordBreak: 'keep-all' }}>작품 상세 정보</span>
         <Switcher onClick={onClickSwitch} />
         {onswitch ? (
           <ToggleWrapper>줄거리, 길이, 공개연도가 표시됩니다</ToggleWrapper>
         ) : (
-          <ToggleWrapper>
-            줄거리, 길이, 공개연도가 표시되지 않습니다
-          </ToggleWrapper>
+          <ToggleWrapper>줄거리, 길이, 공개연도가 표시되지 않습니다</ToggleWrapper>
         )}
-=======
-    <Menu style={{ padding: 20, wordBreak: 'break-word' }}>
-      <Menu.Item key="0" style={{ wordBreak: 'inherit', width: '250px' }}>
-        <span style={{ marginRight: 10, marginBottom: 10 }}>작품 상세 정보</span>
-        <Switcher
-          onClick={() => {
-            alert('토글 설정!');
-          }}
-        />
-        <div>임시 토글</div>
->>>>>>> main
       </Menu.Item>
     </Menu>
   );
@@ -114,11 +81,7 @@ function Header(): JSX.Element {
             </li>
           </ul>
           <SecondaryNavigation>
-<<<<<<< HEAD
-            <NavElement
-              onClick={onClickFocus}
-              className={focus ? "search-focused" : ""}
-            >
+            <NavElement onClick={onClickFocus} className={focus ? 'search-focused' : ''}>
               <FaSearch />
               {focus && (
                 <form>
@@ -135,62 +98,26 @@ function Header(): JSX.Element {
             </NavElement>
             <NavElement
               onClick={() => {
-                alert("키즈");
+                alert('키즈');
               }}
             >
               키즈
             </NavElement>
             <NavElement
               onClick={() => {
-                alert("알람");
+                alert('알람');
               }}
             >
               <BsFillBellFill />
             </NavElement>
             <NavElement>
               <Dropdown overlay={menu}>
-                <span
-                  className="ant-dropdown-link"
-                  onClick={(e) => e.preventDefault()}
-                >
+                <span className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
                   <GoSettings style={{ marginRight: 2 }} />
                   <RiArrowDropDownFill style={{ marginLeft: 2 }} />
                 </span>
               </Dropdown>
             </NavElement>
-=======
-            <div>
-              <div
-                onClick={() => {
-                  alert('검색');
-                }}
-              >
-                <FaSearch />
-              </div>
-              <div
-                onClick={() => {
-                  alert('키즈');
-                }}
-              >
-                키즈
-              </div>
-              <div
-                onClick={() => {
-                  alert('알람');
-                }}
-              >
-                <BsFillBellFill />
-              </div>
-              <div>
-                <Dropdown overlay={menu}>
-                  <span className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-                    <GoSettings style={{ marginRight: 2 }} />
-                    <RiArrowDropDownFill style={{ marginLeft: 2 }} />
-                  </span>
-                </Dropdown>
-              </div>
-            </div>
->>>>>>> main
           </SecondaryNavigation>
         </MainHeader>
       </PinningHeaderContainer>
