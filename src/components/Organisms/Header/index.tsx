@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   MainHeader,
   NavElement,
@@ -15,6 +16,17 @@ import { Link } from "react-router-dom";
 import neflix_logo from "@/images/neflix_logo.png";
 import useHandleScroll from "@/hooks/useHandleScroll";
 import { useCallback, useEffect, useState } from "react";
+=======
+import { MainHeader, PinningHeader, PinningHeaderContainer, SecondaryNavigation } from './style';
+import { Dropdown, Menu, Switch as Switcher } from 'antd';
+import { BsFillBellFill } from 'react-icons/bs';
+import { FaSearch } from 'react-icons/fa';
+import { GoSettings } from 'react-icons/go';
+import { RiArrowDropDownFill } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
+import neflix_logo from '@/images/neflix_logo.png';
+import useHandleScroll from '@/hooks/useHandleScroll';
+>>>>>>> main
 
 function Header(): JSX.Element {
   const { scrolling } = useHandleScroll();
@@ -46,6 +58,7 @@ function Header(): JSX.Element {
   */
 
   const menu = (
+<<<<<<< HEAD
     <Menu style={{ padding: 20, wordBreak: "keep-all" }}>
       <Menu.Item
         key="0"
@@ -64,6 +77,17 @@ function Header(): JSX.Element {
             줄거리, 길이, 공개연도가 표시되지 않습니다
           </ToggleWrapper>
         )}
+=======
+    <Menu style={{ padding: 20, wordBreak: 'break-word' }}>
+      <Menu.Item key="0" style={{ wordBreak: 'inherit', width: '250px' }}>
+        <span style={{ marginRight: 10, marginBottom: 10 }}>작품 상세 정보</span>
+        <Switcher
+          onClick={() => {
+            alert('토글 설정!');
+          }}
+        />
+        <div>임시 토글</div>
+>>>>>>> main
       </Menu.Item>
     </Menu>
   );
@@ -71,7 +95,7 @@ function Header(): JSX.Element {
   return (
     <PinningHeader>
       <PinningHeaderContainer>
-        <MainHeader className={scrolling ? "black" : ""}>
+        <MainHeader className={scrolling ? 'black' : ''}>
           <a href="/">
             <img src={neflix_logo} alt="netflix_logo" />
           </a>
@@ -90,6 +114,7 @@ function Header(): JSX.Element {
             </li>
           </ul>
           <SecondaryNavigation>
+<<<<<<< HEAD
             <NavElement
               onClick={onClickFocus}
               className={focus ? "search-focused" : ""}
@@ -133,6 +158,39 @@ function Header(): JSX.Element {
                 </span>
               </Dropdown>
             </NavElement>
+=======
+            <div>
+              <div
+                onClick={() => {
+                  alert('검색');
+                }}
+              >
+                <FaSearch />
+              </div>
+              <div
+                onClick={() => {
+                  alert('키즈');
+                }}
+              >
+                키즈
+              </div>
+              <div
+                onClick={() => {
+                  alert('알람');
+                }}
+              >
+                <BsFillBellFill />
+              </div>
+              <div>
+                <Dropdown overlay={menu}>
+                  <span className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+                    <GoSettings style={{ marginRight: 2 }} />
+                    <RiArrowDropDownFill style={{ marginLeft: 2 }} />
+                  </span>
+                </Dropdown>
+              </div>
+            </div>
+>>>>>>> main
           </SecondaryNavigation>
         </MainHeader>
       </PinningHeaderContainer>

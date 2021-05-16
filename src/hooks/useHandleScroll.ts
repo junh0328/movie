@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export default function useHandleScroll() {
-  const [scrolling, setScrolling] = useState<Boolean>(false);
+  const [scrolling, setScrolling] = useState<boolean>(false);
 
   const handleScroll = () => {
     if (window.scrollY === 0) {
@@ -12,7 +12,7 @@ export default function useHandleScroll() {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
   }, [scrolling]);
 
   return { scrolling, setScrolling, handleScroll };
