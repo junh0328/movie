@@ -3,7 +3,7 @@ import { BsFillBellFill } from 'react-icons/bs';
 import { FaSearch } from 'react-icons/fa';
 import {
   DropdownContentWrapper,
-  HedaerRightWrapper,
+  HeaderRightWrapper,
   NavElement,
   SearchForm,
   SearchInput,
@@ -51,7 +51,7 @@ function HeaderRight(): JSX.Element {
   );
 
   return (
-    <HedaerRightWrapper>
+    <HeaderRightWrapper>
       <SecondaryNavigation>
         <NavElement onClick={onClickFocus} className={focus ? 'search-focused' : ''}>
           <SearchWrapper>
@@ -95,7 +95,7 @@ function HeaderRight(): JSX.Element {
           </Dropdown>
         </NavElement>
       </SecondaryNavigation>
-    </HedaerRightWrapper>
+    </HeaderRightWrapper>
   );
 }
 

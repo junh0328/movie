@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 
-export const HedaerRightWrapper = styled.div`
+export const HeaderRightWrapper = styled.div`
+  height: 68px;
   color: #e5e5e5;
   display: flex;
   align-items: center;
   flex-grow: 1;
   right: 4%;
   top: 0;
-  height: 100%;
 `;
 
 export const SecondaryNavigation = styled.div`

@@ -4,6 +4,8 @@ export const HeaderLeftWrapper = styled.div`
   height: 68px;
   display: flex;
   align-items: center;
+  color: #e5e5e5;
+
   & a {
     margin-right: 25px;
     font-size: 25px;

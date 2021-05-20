@@ -8,7 +8,7 @@ export const PinningHeader = styled.div`
   height: 70px;
   background: transparent;
 
-  & .black {
+  & .scrolled {
     width: 100%;
     position: fixed;
     transition: ease-in-out;

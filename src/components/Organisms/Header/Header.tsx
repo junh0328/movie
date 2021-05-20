@@ -1,7 +1,7 @@
 import { MainHeader, PinningHeader, PinningHeaderContainer } from './style';
 import useHandleScroll from '@/hooks/useHandleScroll';
-import HeaderLeft from '@/components/molecules/HeaderLeft/';
-import HeaderRight from '@/components/molecules/HeaderRight/';
+import HeaderLeft from '@/components/molecules/HeaderLeft';
+import HeaderRight from '@/components/molecules/HeaderRight';
 
 function Header(): JSX.Element {
   const { scrolling } = useHandleScroll();
@@ -9,7 +9,7 @@ function Header(): JSX.Element {
   return (
     <PinningHeader>
       <PinningHeaderContainer>
-        <MainHeader className={scrolling ? 'black' : ''}>
+        <MainHeader className={scrolling ? 'scrolled' : ''}>
           <HeaderLeft />
           <HeaderRight />
         </MainHeader>
