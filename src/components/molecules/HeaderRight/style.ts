@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { RiArrowDropDownFill } from 'react-icons/ri';
 
 export const HeaderRightWrapper = styled.div`
   height: 68px;
@@ -25,17 +26,12 @@ export const NavElement = styled.div`
   font-size: 1rem;
   margin-right: 20px;
 
-  & span:last-child svg:hover {
-    transition: 500ms;
-    transform: rotate(-180deg);
-  }
-  &.search-focused {
+  & .search-focused {
     transition: 500ms;
     background-color: black;
     border: 1px solid #e5e5e5;
     padding: 5px;
   }
-
   /* & :last-child:hover svg:last-child {
     transition: 500ms;
     transform: rotate(-180deg);
@@ -52,8 +48,6 @@ export const SearchForm = styled.form`
   background: black;
 `;
 
-export const SearchLabel = styled.label``;
-
 export const SearchInput = styled.input`
   border: none;
   margin-left: 10px;
@@ -62,7 +56,7 @@ export const SearchInput = styled.input`
   background-color: transparent;
   outline: none;
 
-  & :focus {
+  :focus {
     outline: none;
   }
 `;
@@ -71,11 +65,11 @@ export const ToggleWrapper = styled.div`
   margin-top: 20px;
 `;
 
-export const DropdownContentWrapper = styled.div`
-  & span {
-    & svg:last-child:hover {
-      transition: 500ms;
-      transform: rotate(-180deg);
-    }
+export const DropdownContentWrapper = styled.div``;
+
+export const CustomRiArrowDropDownFill = styled(RiArrowDropDownFill)`
+  :hover {
+    transition: 500ms;
+    transform: rotate(-180deg);
   }
 `;
