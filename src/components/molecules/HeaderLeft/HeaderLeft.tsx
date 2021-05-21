@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import neflix_logo from '@/images/neflix_logo.png';
 import { HeaderLeftWrapper } from './style';
 
