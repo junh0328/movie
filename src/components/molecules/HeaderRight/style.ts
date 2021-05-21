@@ -52,12 +52,15 @@ export const SearchForm = styled.form`
   background: black;
 `;
 
+export const SearchLabel = styled.label``;
+
 export const SearchInput = styled.input`
   border: none;
   margin-left: 10px;
   width: 200px;
   color: white;
   background-color: transparent;
+  outline: none;
 
   & :focus {
     outline: none;

@@ -7,6 +7,7 @@ import {
   NavElement,
   SearchForm,
   SearchInput,
+  SearchLabel,
   SearchWrapper,
   SecondaryNavigation,
   ToggleWrapper,
@@ -53,11 +54,18 @@ function HeaderRight(): JSX.Element {
   return (
     <HeaderRightWrapper>
       <SecondaryNavigation>
-        <NavElement onClick={onClickFocus} className={focus ? 'search-focused' : ''}>
-          <SearchWrapper>
+        <NavElement>
+          <SearchWrapper onClick={onClickFocus} className={focus ? 'search-focused' : ''}>
+            {/* button */}
             <FaSearch />
             {focus && (
+              // form
               <SearchForm>
+                {/* legend */}
+                <legend>검색</legend>
+                {/* label */}
+                <SearchLabel></SearchLabel>
+                {/* input */}
                 <SearchInput
                   onClick={(e) => {
                     e.stopPropagation();
