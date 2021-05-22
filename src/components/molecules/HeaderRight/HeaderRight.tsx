@@ -25,10 +25,12 @@ function HeaderRight(): JSX.Element {
   const [onswitch, onsetSwitch] = useState(false);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
-  inputRef.current?.focus();
 
+  // 이런식으로 주는 게 아닌 것 같은데 구현은 되었습니다,,
   useEffect(() => {
-    console.log('ref 상태 감지', inputRef);
+    if (inputRef.current) {
+      inputRef.current?.focus();
+    }
   });
 
   const onClickSwitch = useCallback(() => {
@@ -37,6 +39,8 @@ function HeaderRight(): JSX.Element {
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+    // console.log(e.target.value);
+    inputRef.current?.focus();
   };
 
   const onClickFocus = useCallback(() => {
@@ -72,7 +76,7 @@ function HeaderRight(): JSX.Element {
         <NavElement>
           <SearchWrapper onClick={onClickFocus} onBlur={removeFocus} className={focus ? 'search-focused' : ''}>
             {/* button */}
-            <FaSearch />
+            <FaSearch style={{ marginLeft: 5 }} />
             {focus && (
               // form
               <SearchForm>

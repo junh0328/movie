@@ -55,10 +55,6 @@ export const SearchInput = styled.input`
   color: white;
   background-color: transparent;
   outline: none;
-
-  :focus {
-    outline: none;
-  }
 `;
 
 export const ToggleWrapper = styled.div`
