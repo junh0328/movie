@@ -1,9 +1,5 @@
 {
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "./tsconfig.json",
-    "sourceType": "module"
-  },
   "env": {
     "node": true, // node 사용 OK
     "browser": true, // browser 인식 Ok
@@ -34,6 +30,7 @@
     "react/jsx-filename-extension": "off", // <> </>쓰는 것 방지
     "spaced-comment": "off", // 주석 쓰는 것 방지
     "no-unused-variable": "off",
+    "react/prop-types": "off",
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/ban-types": [
