@@ -1,8 +1,14 @@
-import { BillboardWrap, InfoMetaLayer, InfoTitleWrapper, InfoWrapper, LogoAndTextMetaLayer } from './style';
 import spiderman from '@/images/spiderman.png';
 import logoTitle from '@/images/logoTitle.png';
 import { AiFillCaretRight } from 'react-icons/ai';
 import { BiInfoCircle } from 'react-icons/bi';
+import {
+  BillboardWrap,
+  InfoMetaLayer,
+  InfoTitleWrapper,
+  InfoWrapper,
+  LogoAndTextMetaLayer,
+} from '@/components/organisms/Billboard/style';
 
 // 후에 props를 바탕으로 재사용가능한 컴포넌트로 바꿔야 함
 
