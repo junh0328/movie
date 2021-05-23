@@ -5,6 +5,7 @@ import { MainWrapper } from './style';
 import { Original, Toprate, ResponseType } from '@/types/common';
 import Billboard from '@/components/Organisms/Billboard';
 import { NetFlixOriginals, TopRated } from '@/apis';
+import Modal from '@/components/Organisms/Modal';
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ const Home: FC = () => {
   const [orginals, setOriginals] = useState<Original[]>([]);
   const [topRates, setTopRates] = useState<Toprate[]>([]);
   const [upLoad, setUpLoad] = useState<boolean>(false);
+  const [selectedContent, setSelectedContent] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     if (upLoad === false) {
@@ -50,7 +52,7 @@ const Home: FC = () => {
       console.error(error);
     }
   };
-
+  const selectContent = (id: number) => setSelectedContent(id);
   return (
     <>
       {/* 메인 이미지가 뜨는 컴포넌트 현재는 스파이더맨 이미지 */}
@@ -89,7 +91,7 @@ const Home: FC = () => {
                 }}
               >
                 {orginals.map((original) => (
-                  <li key={original.id}>
+                  <li key={original.id} onClick={() => selectContent(original.id)}>
                     <ul>
                       <li>{original.name}</li>
                       <img
@@ -121,7 +123,7 @@ const Home: FC = () => {
                 }}
               >
                 {topRates.map((topRate) => (
-                  <li key={topRate.id} style={{ listStyle: 'none' }}>
+                  <li key={topRate.id} style={{ listStyle: 'none' }} onClick={() => selectContent(topRate.id)}>
                     <ul>
                       <li>
                         🌟 {topRate.vote_average}, Count with {topRate.vote_count}
@@ -143,6 +145,7 @@ const Home: FC = () => {
           <div>...Loading</div>
         )}
       </MainWrapper>
+      {selectedContent && <Modal contentId={selectedContent} onClickHandler={() => setSelectedContent(undefined)} />}
     </>
   );
 };
