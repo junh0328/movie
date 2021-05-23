@@ -1,5 +1,15 @@
 import styled from '@emotion/styled';
 
+// export const ModalOutWrapper = styled.div`
+//   position: fixed;
+//   text-align: center;
+//   left: 0;
+//   bottom: 0;
+//   top: 0;
+//   right: 0;
+//   z-index: 10001;
+// `;
+
 export const ModalWrap = styled.div`
   background-color: #181818;
   color: white;
@@ -14,6 +24,7 @@ export const ModalWrap = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
 `;
