@@ -4,6 +4,7 @@ import { Global } from '@emotion/react';
 import Home from '@/pages/Home';
 import About from '@/pages/About';
 import User from '@/pages/User';
+import Slider from '@/pages/Slider';
 import Footer from '@/components/organisms/Footer';
 import Header from '@/components/organisms/Header';
 import reset from '@/theme/globalStyle';
@@ -15,6 +16,9 @@ function App(): JSX.Element {
       {/* components의 Header */}
       <Header />
       <Switch>
+        <Route path="/slider">
+          <Slider />
+        </Route>
         <Route path="/about">
           <About />
         </Route>
