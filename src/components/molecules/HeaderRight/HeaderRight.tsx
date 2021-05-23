@@ -39,8 +39,6 @@ function HeaderRight(): JSX.Element {
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-    // console.log(e.target.value);
-    inputRef.current?.focus();
   };
 
   const onClickFocus = useCallback(() => {
@@ -52,9 +50,9 @@ function HeaderRight(): JSX.Element {
     setValue('');
   }, []);
 
-  useEffect(() => {
-    console.log('focus 상태:', focus);
-  }, [focus]);
+  // useEffect(() => {
+  //   console.log('focus 상태:', focus);
+  // }, [focus]);
 
   const menu = (
     <Menu style={MenuStyle}>
@@ -75,12 +73,9 @@ function HeaderRight(): JSX.Element {
       <SecondaryNavigation>
         <NavElement>
           <SearchWrapper onClick={onClickFocus} onBlur={removeFocus} className={focus ? 'search-focused' : ''}>
-            {/* button */}
             <FaSearch style={{ marginLeft: 5 }} />
             {focus && (
-              // form
               <SearchForm>
-                {/* input */}
                 <SearchInput
                   onClick={(e) => {
                     e.stopPropagation();
@@ -88,7 +83,6 @@ function HeaderRight(): JSX.Element {
                   placeholder="제목, 사람, 장르"
                   value={value}
                   onChange={onChangeInput}
-                  // 클릭시 focus를 주기 위한 inputRef
                   ref={inputRef}
                 />
               </SearchForm>
