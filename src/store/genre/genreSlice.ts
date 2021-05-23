@@ -16,15 +16,12 @@ const initialState: GenreType = {
   status: 'idle',
 };
 
-export const genreAsync = createAsyncThunk<Movie[]>('genre/fetchGenre', async () => {
-  try {
-    const {
-      data: { genres },
-    } = await axios.get(Genre);
-    return genres;
-  } catch (e) {
-    console.log(e);
-  }
+const fetGenre = fetchApi<Movie[]>({ url: Genre, method: 'GET' });
+
+export const genreAsync = createAsyncThunk('genre/fetchGenre', async () => {
+  console.log('genreAsync thunk');
+  const res = await fetGenre();
+  return res;
 });
 
 //slice
@@ -38,9 +35,16 @@ export const genreSlice = createSlice({
       .addCase(genreAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(genreAsync.fulfilled, (state, action: PayloadAction<Movie[]>) => {
+      .addCase(genreAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.genre = action.payload;
+      })
+      .addCase(genreAsync.rejected, (state, action) => {
+        if (action.error.name === 'FailRequest222') {
+        }
+        console.log('rejected');
+        console.log(action.error);
+        state.status = 'failed';
       });
   },
 });

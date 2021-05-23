@@ -6,9 +6,17 @@ const errorHandler = (e: Error) => {
   console.error(e);
 };
 
-export const fetchApi =
-  <T, S = null>(param: { url: string; method: Method }) =>
-  async (paramData?: S) => {
+type Name = 'FailRequest' | 'NetworkEror' | 'FailRequest222';
+
+class CustomError extends Error {
+  constructor(name: Name) {
+    super();
+    this.name = name;
+  }
+}
+
+export const fetchApi = <T, S = null>(param: { url: string; method: Method }) => {
+  return async (paramData?: S) => {
     try {
       const data = (
         await axios({
@@ -19,7 +27,9 @@ export const fetchApi =
       ).data as T;
 
       return data;
-    } catch (e) {
-      errorHandler(e);
+    } catch (error) {
+      console.error(error);
+      throw new CustomError('FailRequest222');
     }
   };
+};
