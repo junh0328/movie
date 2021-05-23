@@ -6,6 +6,7 @@ import {
   ModalBar,
   ModalImage,
   ModalInfoWrapper,
+  // ModalOutWrapper,
   ModalTitle,
   ModalWrap,
   PlayButton,
@@ -34,6 +35,7 @@ const Modal = ({ contentId, onClickHandler }: { contentId: number; onClickHandle
   }, []);
 
   return content ? (
+    // <ModalOutWrapper onClick={() => alert('clicked!')}>
     <ModalWrap>
       <ModalImage alt={content.title} src={`https://image.tmdb.org/t/p/original/${content.backdrop_path}`} />
       <section>
@@ -76,6 +78,7 @@ const Modal = ({ contentId, onClickHandler }: { contentId: number; onClickHandle
       <CloseButton onClickHandler={onClickHandler} />
     </ModalWrap>
   ) : (
+    // </ModalOutWrapper>
     <span>Loading</span>
   );
 };

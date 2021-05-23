@@ -8,7 +8,7 @@ export const PinningHeader = styled.div`
   height: 70px;
   background: transparent;
 
-  & .black {
+  & .scrolled {
     width: 100%;
     position: fixed;
     transition: ease-in-out;
@@ -29,55 +29,4 @@ export const MainHeader = styled.div`
   align-items: center;
   padding-left: 4%;
   padding-right: 4%;
-
-  & a {
-    margin-right: 25px;
-    font-size: 25px;
-    text-decoration: none;
-    color: #e50914;
-    display: inline-block;
-    vertical-align: middle;
-    cursor: pointer;
-    & img {
-      width: 110.5px;
-    }
-  }
-  & ul {
-    padding-left: 0;
-    margin-bottom: 0;
-    display: flex;
-    list-style: none;
-    & li {
-      & a {
-        font-size: 12px;
-        color: #e5e5e5;
-      }
-      & a:hover {
-        transition-duration: 0.4s;
-        color: #b3b3b3;
-      }
-    }
-  }
-`;
-
-export const SecondaryNavigation = styled.div`
-  color: #e5e5e5;
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  justify-content: flex-end;
-  right: 4%;
-  top: 0;
-  height: 100%;
-
-  & div {
-    cursor: pointer;
-    margin-right: 20px;
-    display: block;
-    font-size: 14px;
-    & div {
-      display: inline-block;
-      font-size: 14px;
-    }
-  }
 `;

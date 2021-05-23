@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useRootState } from '@/hooks/useRootState';
 import { genreAsync, getGenre } from '@/store/genre/genreSlice';
 
-const About: FC = () => {
+const Latest: FC = () => {
   const dispatch = useDispatch();
   const { genre } = useRootState(getGenre);
 
@@ -37,4 +37,4 @@ const About: FC = () => {
   );
 };
 
-export default About;
+export default Latest;

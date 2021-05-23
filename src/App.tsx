@@ -2,7 +2,7 @@ import 'antd/dist/antd.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Global } from '@emotion/react';
 import Home from '@/pages/Home';
-import About from '@/pages/About';
+import Latest from '@/pages/Latest';
 import User from '@/pages/User';
 import Slider from '@/pages/Slider';
 import Footer from '@/components/organisms/Footer';
@@ -19,8 +19,8 @@ function App(): JSX.Element {
         <Route path="/slider">
           <Slider />
         </Route>
-        <Route path="/about">
-          <About />
+        <Route path="/latest">
+          <Latest />
         </Route>
         <Route path="/users">
           <User />
