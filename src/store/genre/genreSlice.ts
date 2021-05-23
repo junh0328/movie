@@ -4,7 +4,6 @@ import { RootState } from '@/store';
 
 import { Movie, StatusType } from '@/types/common';
 import { Genre } from '@/apis';
-import { fetchApi } from '@/utils/fetchApi';
 
 interface GenreType {
   genre: Movie[];

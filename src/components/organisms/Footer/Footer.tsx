@@ -1,5 +1,11 @@
-import { SocialLinks, MemberFooterLink, MemberFooterService, MemberFooterCopyRight, FooterWrap } from './style';
 import { ImFacebook2, ImInstagram, ImTwitter, ImYoutube } from 'react-icons/im';
+import {
+  FooterWrap,
+  MemberFooterCopyRight,
+  MemberFooterLink,
+  MemberFooterService,
+  SocialLinks,
+} from '@/components/organisms/Footer/style';
 
 function Footer(): JSX.Element {
   return (
