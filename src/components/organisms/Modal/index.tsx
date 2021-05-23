@@ -9,7 +9,7 @@ import {
   ModalTitle,
   ModalWrap,
   PlayButton,
-} from '@/components/Organisms/Modal/style';
+} from '@/components/organisms/Modal/style';
 import { ContentDetail } from '@/types/common';
 import moment from 'moment';
 import { AiFillCaretRight } from 'react-icons/ai';

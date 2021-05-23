@@ -8,7 +8,7 @@ import {
   InfoTitleWrapper,
   InfoWrapper,
   LogoAndTextMetaLayer,
-} from '@/components/Organisms/Billboard/style';
+} from '@/components/organisms/Billboard/style';
 
 // 후에 props를 바탕으로 재사용가능한 컴포넌트로 바꿔야 함
 

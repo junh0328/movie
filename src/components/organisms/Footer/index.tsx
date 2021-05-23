@@ -5,7 +5,7 @@ import {
   MemberFooterLink,
   MemberFooterService,
   SocialLinks,
-} from '@/components/Organisms/Footer/style';
+} from '@/components/organisms/Footer/style';
 
 function Footer(): JSX.Element {
   return (
