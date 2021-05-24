@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState, useRef, useMemo } from 'react';
+import React, { useCallback, useEffect, useState, useRef, useMemo, FC } from 'react';
 import { BsFillBellFill } from 'react-icons/bs';
 import { FaSearch } from 'react-icons/fa';
-import { CloseOutlined } from '@ant-design/icons';
+import { CloseOutlined, GithubOutlined } from '@ant-design/icons';
 import {
   CustomRiArrowDropDownFill,
   DropdownContentWrapper,
@@ -14,9 +14,13 @@ import {
 } from './style';
 import { Dropdown, Menu, Switch as Switcher } from 'antd';
 import { GoSettings } from 'react-icons/go';
-import SearchModal from '../SearchModal';
+// import SearchModal from '../SearchModal';
+import { API_KEY, BASE_URL } from '@/apis';
+import axios from 'axios';
+import { SearchModalWrapper } from '../SearchModal/style';
+import { QueryType } from '@/types/common';
 
-function HeaderRight(): JSX.Element {
+const HeaderRight: FC = () => {
   const MenuStyle = useMemo(() => ({ padding: 20, width: 300, marginTop: 20 }), []);
   const BgStyle = useMemo(() => ({ background: 'white' }), []);
   const SpanStyle = useMemo(() => ({ marginRight: 10 }), []);
@@ -41,10 +45,36 @@ function HeaderRight(): JSX.Element {
     onsetSwitch((prev) => !prev);
   }, []);
 
+  // searchAPI 사용 부분
+  const [fetchedData, setFetchedData] = useState<QueryType[]>([]);
+
+  // fetching search query
+  const SearchQuery = (query: any) =>
+    `${BASE_URL}/search/movie?api_key=${API_KEY}&sort_by=&query=${query}&language=en-US&page=1`;
+
+  let datas = [];
+
+  const fetch = async (query: any) => {
+    try {
+      const response = await axios.get(SearchQuery(query));
+      datas = response.data.results;
+      // console.log('검색된 data 출력!', datas);
+      setFetchedData(datas);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+    // console.log(e.target.value);
+    // console.log(e.target.value.length);
     setShowOutButton(true);
     setShowSearchModal(true);
+    if (e.target.value.length > 1) {
+      // console.log('fetch 시작!');
+      fetch(value);
+    }
   };
 
   const onClickFocus = useCallback(() => {
@@ -57,10 +87,6 @@ function HeaderRight(): JSX.Element {
     setShowOutButton(false);
     setValue('');
   }, []);
-
-  // useEffect(() => {
-  //   console.log('focus 상태 확인', focus);
-  // }, [focus]);
 
   const menu = (
     <Menu style={MenuStyle}>
@@ -124,9 +150,45 @@ function HeaderRight(): JSX.Element {
           </Dropdown>
         </NavElement>
       </SecondaryNavigation>
-      {showSearchModal && <SearchModal />}
+      {showSearchModal && (
+        <SearchModalWrapper>
+          {fetchedData && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+              {fetchedData.map((f) => (
+                <ul key={f.id} style={{ listStyle: 'none', paddingLeft: 0, marginTop: 0 }}>
+                  <li key={f.id}>
+                    <div style={{ width: 310, marginRight: 5 }}>
+                      {f.backdrop_path ? (
+                        <img
+                          src={`https://image.tmdb.org/t/p/original/${f.backdrop_path}`}
+                          alt={f.original_title}
+                          style={{ width: 300 }}
+                        />
+                      ) : (
+                        <div
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: '168.750px',
+                            fontSize: '8rem',
+                            paddingTop: 0,
+                            color: 'salmon',
+                          }}
+                        >
+                          <GithubOutlined />
+                        </div>
+                      )}
+                    </div>
+                  </li>
+                </ul>
+              ))}
+            </div>
+          )}
+        </SearchModalWrapper>
+      )}
     </HeaderRightWrapper>
   );
-}
+};
 
 export default HeaderRight;
