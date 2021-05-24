@@ -17,5 +17,5 @@ export const Documentary = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_g
 export const MovieDetail = (id: number) => `${BASE_URL}/movie/${id}?api_key=${API_KEY}`;
 
 // fetching search query
-export const SearchQuery = (search: any) =>
-  `${BASE_URL}/search/movie?api_key=${API_KEY}&sort_by=&include_adult=false&query=${search}&language=en-US&page=1`;
+export const SearchQuery = (query: string) =>
+  `${BASE_URL}/search/movie?api_key=${API_KEY}&sort_by=&query=${query}&language=en-US&page=1`;

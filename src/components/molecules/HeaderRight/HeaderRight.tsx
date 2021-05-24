@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState, useRef, useMemo, FC } from 'react';
+import React, { useCallback, useEffect, useState, useRef, useMemo } from 'react';
 import { BsFillBellFill } from 'react-icons/bs';
 import { FaSearch } from 'react-icons/fa';
-import { CloseOutlined, GithubOutlined } from '@ant-design/icons';
+import { CloseOutlined } from '@ant-design/icons';
 import {
   CustomRiArrowDropDownFill,
   DropdownContentWrapper,
@@ -14,27 +14,32 @@ import {
 } from './style';
 import { Dropdown, Menu, Switch as Switcher } from 'antd';
 import { GoSettings } from 'react-icons/go';
-// import SearchModal from '../SearchModal';
-import { API_KEY, BASE_URL } from '@/apis';
+import SearchModal from '../SearchModal';
 import axios from 'axios';
-import { SearchModalWrapper } from '../SearchModal/style';
 import { QueryType } from '@/types/common';
+import { SearchQuery } from '@/apis';
+import { SearchModalWrapper } from './style';
 
-const HeaderRight: FC = () => {
+const HeaderRight: React.FC = () => {
   const MenuStyle = useMemo(() => ({ padding: 20, width: 300, marginTop: 20 }), []);
   const BgStyle = useMemo(() => ({ background: 'white' }), []);
   const SpanStyle = useMemo(() => ({ marginRight: 10 }), []);
 
+  // input 값 관리
   const [value, setValue] = useState('');
+  // input 태그 포커스 관리
   const [focus, setFocus] = useState(false);
+  // 상세보기 버튼 값 관리
   const [onswitch, onsetSwitch] = useState(false);
-
+  // 검색 api 값 관리
+  const [fetchedData, setFetchedData] = useState<QueryType[]>([]);
+  // input 버튼 내부의 x 버튼 관리
   const [showOutButton, setShowOutButton] = useState(false);
+  // input 태그 내부에 값 입력시 켜지는 모달 상태 관리
   const [showSearchModal, setShowSearchModal] = useState(false);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  // 이런식으로 주는 게 아닌 것 같은데 구현은 되었습니다,,
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current?.focus();
@@ -45,20 +50,12 @@ const HeaderRight: FC = () => {
     onsetSwitch((prev) => !prev);
   }, []);
 
-  // searchAPI 사용 부분
-  const [fetchedData, setFetchedData] = useState<QueryType[]>([]);
-
-  // fetching search query
-  const SearchQuery = (query: any) =>
-    `${BASE_URL}/search/movie?api_key=${API_KEY}&sort_by=&query=${query}&language=en-US&page=1`;
-
+  // search API 사용 부분
   let datas = [];
-
-  const fetch = async (query: any) => {
+  const fetch = async (query: string) => {
     try {
       const response = await axios.get(SearchQuery(query));
       datas = response.data.results;
-      // console.log('검색된 data 출력!', datas);
       setFetchedData(datas);
     } catch (error) {
       console.error(error);
@@ -67,12 +64,10 @@ const HeaderRight: FC = () => {
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-    // console.log(e.target.value);
-    // console.log(e.target.value.length);
     setShowOutButton(true);
     setShowSearchModal(true);
+    // key event가 1개 이상 작성됐을 때부터 기능 실행
     if (e.target.value.length > 1) {
-      // console.log('fetch 시작!');
       fetch(value);
     }
   };
@@ -150,38 +145,13 @@ const HeaderRight: FC = () => {
           </Dropdown>
         </NavElement>
       </SecondaryNavigation>
+      {/* search api를 모달을 통해 구현 */}
       {showSearchModal && (
         <SearchModalWrapper>
           {fetchedData && (
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', paddingLeft: '4%', paddingRight: '4%' }}>
               {fetchedData.map((f) => (
-                <ul key={f.id} style={{ listStyle: 'none', paddingLeft: 0, marginTop: 0 }}>
-                  <li key={f.id}>
-                    <div style={{ width: 310, marginRight: 5 }}>
-                      {f.backdrop_path ? (
-                        <img
-                          src={`https://image.tmdb.org/t/p/original/${f.backdrop_path}`}
-                          alt={f.original_title}
-                          style={{ width: 300 }}
-                        />
-                      ) : (
-                        <div
-                          style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            height: '168.750px',
-                            fontSize: '8rem',
-                            paddingTop: 0,
-                            color: 'salmon',
-                          }}
-                        >
-                          <GithubOutlined />
-                        </div>
-                      )}
-                    </div>
-                  </li>
-                </ul>
+                <SearchModal key={f.id} data={f} />
               ))}
             </div>
           )}

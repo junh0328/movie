@@ -49,10 +49,10 @@ export type ContentDetail = {
 };
 
 export type QueryType = {
-  adult: string;
-  backdrop_path: string;
   id: number;
-  original_language: string;
-  original_title: string;
   title: string;
+  backdrop_path: string;
+  original_title?: string;
+  original_language?: string;
+  adult?: string;
 };
