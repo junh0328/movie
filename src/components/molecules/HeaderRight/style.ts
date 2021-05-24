@@ -44,10 +44,6 @@ export const SearchWrapper = styled.div`
   justify-content: center;
 `;
 
-export const SearchForm = styled.form`
-  background: black;
-`;
-
 export const SearchInput = styled.input`
   border: none;
   margin-left: 10px;

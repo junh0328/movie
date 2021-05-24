@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState, useRef, useMemo } from 'react';
 import { BsFillBellFill } from 'react-icons/bs';
 import { FaSearch } from 'react-icons/fa';
+import { CloseOutlined } from '@ant-design/icons';
 import {
   CustomRiArrowDropDownFill,
   DropdownContentWrapper,
   HeaderRightWrapper,
   NavElement,
-  SearchForm,
   SearchInput,
   SearchWrapper,
   SecondaryNavigation,
@@ -14,6 +14,7 @@ import {
 } from './style';
 import { Dropdown, Menu, Switch as Switcher } from 'antd';
 import { GoSettings } from 'react-icons/go';
+import SearchModal from '../SearchModal';
 
 function HeaderRight(): JSX.Element {
   const MenuStyle = useMemo(() => ({ padding: 20, width: 300, marginTop: 20 }), []);
@@ -23,6 +24,9 @@ function HeaderRight(): JSX.Element {
   const [value, setValue] = useState('');
   const [focus, setFocus] = useState(false);
   const [onswitch, onsetSwitch] = useState(false);
+
+  const [showOutButton, setShowOutButton] = useState(false);
+  const [showSearchModal, setShowSearchModal] = useState(false);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -39,6 +43,8 @@ function HeaderRight(): JSX.Element {
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+    setShowOutButton(true);
+    setShowSearchModal(true);
   };
 
   const onClickFocus = useCallback(() => {
@@ -47,11 +53,13 @@ function HeaderRight(): JSX.Element {
 
   const removeFocus = useCallback(() => {
     setFocus(false);
+    setShowSearchModal(false);
+    setShowOutButton(false);
     setValue('');
   }, []);
 
   // useEffect(() => {
-  //   console.log('focus 상태:', focus);
+  //   console.log('focus 상태 확인', focus);
   // }, [focus]);
 
   const menu = (
@@ -75,7 +83,7 @@ function HeaderRight(): JSX.Element {
           <SearchWrapper onClick={onClickFocus} onBlur={removeFocus} className={focus ? 'search-focused' : ''}>
             <FaSearch style={{ marginLeft: 5 }} />
             {focus && (
-              <SearchForm>
+              <>
                 <SearchInput
                   onClick={(e) => {
                     e.stopPropagation();
@@ -85,7 +93,9 @@ function HeaderRight(): JSX.Element {
                   onChange={onChangeInput}
                   ref={inputRef}
                 />
-              </SearchForm>
+                {showOutButton && <CloseOutlined style={{ marginRight: 5 }} />}
+                {/* onClick={removeFocus} */}
+              </>
             )}
           </SearchWrapper>
         </NavElement>
@@ -114,6 +124,7 @@ function HeaderRight(): JSX.Element {
           </Dropdown>
         </NavElement>
       </SecondaryNavigation>
+      {showSearchModal && <SearchModal />}
     </HeaderRightWrapper>
   );
 }
