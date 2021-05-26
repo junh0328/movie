@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+// 푸터 전체를 감싸는 부분
 export const FooterWrap = styled.div`
   max-width: 980px;
   margin: 20px auto 0;
@@ -7,6 +8,7 @@ export const FooterWrap = styled.div`
   color: gray;
 `;
 
+// SNS 링크 전체를 감싸는 부분
 export const SocialLinks = styled.div`
   margin-bottom: 1rem;
   & a {
@@ -16,10 +18,10 @@ export const SocialLinks = styled.div`
   }
 `;
 
+// 기타 넷플릭스 페이지를 링크 해주는 부분
 export const MemberFooterLink = styled.div`
   color: gray;
   font-size: 13px;
-
   & ul {
     display: flex;
     flex-direction: row;
@@ -35,17 +37,22 @@ export const MemberFooterLink = styled.div`
     }
   }
 `;
+
+// 서비스 코드 버튼을 감싸는 div
 export const MemberFooterService = styled.div`
   margin-bottom: 20px;
 
+  // 서비스 코드 버튼을 감싸는 div 내부 버튼
   & button {
     padding: 0.5em;
     border: 1px solid gray;
     background: 0 0;
     font-size: 13px;
+    cursor: pointer;
   }
 `;
 
+// 카피라이트 wrapper
 export const MemberFooterCopyRight = styled.div`
   padding-bottom: 15px;
 `;

@@ -29,3 +29,21 @@ export type Toprate = {
 export type ResponseType = {
   results: [];
 };
+
+export type Genre = {
+  id: number;
+  name: string;
+};
+
+export type ContentDetail = {
+  adult: boolean;
+  backdrop_path: string;
+  title: string;
+  genres: Genre[];
+  id: number;
+  overview: string;
+  revenue: number;
+  runtime: number;
+  status: string;
+  release_date: string;
+};

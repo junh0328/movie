@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import { ButtonAlign } from '.';
 
-interface Props {
+interface ButtonProps {
   name: string;
   align?: ButtonAlign;
   onClick?: () => void;
@@ -34,7 +34,7 @@ export const StyledButton = styled.button<StyledProps>`
   }
 `;
 
-const Button: FC<Props> = ({ name, align, onClick, type }) => (
+const Button: FC<ButtonProps> = ({ name, align, onClick, type }) => (
   <StyledButton align={align} onClick={onClick} type={type}>
     {name}
   </StyledButton>
