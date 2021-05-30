@@ -16,7 +16,7 @@ import { Dropdown, Menu, Switch as Switcher } from 'antd';
 import { GoSettings } from 'react-icons/go';
 import SearchModal from '../SearchModal';
 import axios from 'axios';
-import { QueryType } from '@/types/common';
+import { ContentDetail } from '@/types/common';
 import { SearchQuery } from '@/apis';
 import { SearchModalWrapper } from './style';
 
@@ -32,7 +32,7 @@ const HeaderRight: React.FC = () => {
   // 상세보기 버튼 값 관리
   const [onswitch, onsetSwitch] = useState(false);
   // 검색 api 값 관리
-  const [fetchedData, setFetchedData] = useState<QueryType[]>([]);
+  const [fetchedData, setFetchedData] = useState<ContentDetail[]>([]);
   // input 버튼 내부의 x 버튼 관리
   const [showOutButton, setShowOutButton] = useState(false);
   // input 태그 내부에 값 입력시 켜지는 모달 상태 관리

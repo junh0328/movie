@@ -36,23 +36,16 @@ export type Genre = {
 };
 
 export type ContentDetail = {
-  adult: boolean;
-  backdrop_path: string;
-  title: string;
-  genres: Genre[];
-  id: number;
-  overview: string;
-  revenue: number;
-  runtime: number;
-  status: string;
-  release_date: string;
-};
-
-export type QueryType = {
   id: number;
   title: string;
   backdrop_path: string;
   original_title?: string;
   original_language?: string;
-  adult?: string;
+  genres: Genre[];
+  overview: string;
+  revenue: number;
+  runtime: number;
+  status: string;
+  release_date: string;
+  adult?: boolean;
 };

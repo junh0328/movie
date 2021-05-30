@@ -1,15 +1,14 @@
-import { QueryType } from '@/types/common';
+import { ContentDetail } from '@/types/common';
 import React from 'react';
-// import { SearchModalWrapper } from './style';
 import { GithubOutlined } from '@ant-design/icons';
 
 type Props = {
-  data: QueryType;
+  data: ContentDetail;
 };
 
 function SearchModal(props: Props) {
-  // const [fetchedData, setFetchedData] = useState<QueryType[]>([]) 의 데이터를 props로 가져오는 행위
   const { data } = props;
+
   return (
     <ul key={data.id} style={{ listStyle: 'none', paddingLeft: 0, marginTop: 0 }}>
       <li key={data.id}>
@@ -18,7 +17,8 @@ function SearchModal(props: Props) {
             <img
               src={`https://image.tmdb.org/t/p/original/${data.backdrop_path}`}
               alt={data.original_title}
-              style={{ width: 300 }}
+              style={{ width: 300, cursor: 'pointer' }}
+              onClick={() => alert(`clicked!: ${data.title}`)}
             />
           ) : (
             <div
@@ -29,7 +29,9 @@ function SearchModal(props: Props) {
                 height: '168.750px',
                 fontSize: '8rem',
                 paddingTop: 0,
+                cursor: 'pointer',
               }}
+              onClick={() => alert('There is no backdrop_path')}
             >
               <GithubOutlined />
             </div>
