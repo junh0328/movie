@@ -1,12 +1,15 @@
 import { ContentDetail } from '@/types/common';
-import React from 'react';
+import React, { useState } from 'react';
 import { GithubOutlined } from '@ant-design/icons';
+import Modal from '@/components/organisms/Modal';
 
 type Props = {
   data: ContentDetail;
 };
 
 function SearchModal({ data }: Props) {
+  const [selectedContent, setSelectedContent] = useState<number | undefined>(undefined);
+  const selectContent = (id: number) => setSelectedContent(id);
   return (
     <>
       <ul key={data.id} style={{ listStyle: 'none', paddingLeft: 0, marginTop: 0 }}>
@@ -17,7 +20,7 @@ function SearchModal({ data }: Props) {
                 src={`https://image.tmdb.org/t/p/original/${data.backdrop_path}`}
                 alt={data.original_title}
                 style={{ width: 300, cursor: 'pointer' }}
-                onClick={() => alert(`clicked!: ${data.title}`)}
+                onClick={() => selectContent(data.id)}
               />
             ) : (
               <div
@@ -38,6 +41,7 @@ function SearchModal({ data }: Props) {
           </div>
         </li>
       </ul>
+      {selectedContent && <Modal contentId={selectedContent} onClickHandler={() => setSelectedContent(undefined)} />}
     </>
   );
 }
