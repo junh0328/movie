@@ -76,10 +76,25 @@ const HeaderRight: React.FC = () => {
     setFocus((prev) => !prev);
   }, []);
 
+  // value (search 의 input) 값에 유무에 따른 ShowOutButton 상태 관리
+  useEffect(() => {
+    if (!value) {
+      setShowOutButton(false);
+    }
+  }, [value]);
+
+  // x 버튼이 있다면 (value 값을 입력한 상황이라면) removeFocus 함수를 발동시키지 않고 싶어요
   const removeFocus = useCallback(() => {
-    setFocus(false);
+    if (!showOutButton) {
+      setFocus(false);
+      setShowSearchModal(false);
+      setValue('');
+    }
+  }, [showOutButton]);
+
+  // x 버튼을 누르면 removeFocus와 같은 처리
+  const onCloseModal = useCallback(() => {
     setShowSearchModal(false);
-    setShowOutButton(false);
     setValue('');
   }, []);
 
@@ -114,7 +129,7 @@ const HeaderRight: React.FC = () => {
                   onChange={onChangeInput}
                   ref={inputRef}
                 />
-                {showOutButton && <CloseOutlined style={{ marginRight: 5 }} />}
+                {showOutButton && <CloseOutlined onClick={onCloseModal} style={{ marginRight: 5 }} />}
                 {/* onClick={removeFocus} */}
               </>
             )}
