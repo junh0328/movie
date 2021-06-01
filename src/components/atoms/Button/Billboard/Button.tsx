@@ -1,5 +1,7 @@
 import { FC, memo } from 'react';
 import styled from '@emotion/styled';
+import { AiFillCaretRight } from 'react-icons/ai';
+import { BiInfoCircle } from 'react-icons/bi';
 
 import { ButtonAlign } from '.';
 
@@ -15,27 +17,26 @@ interface StyledProps {
 }
 
 export const StyledButton = styled.button<StyledProps>`
-  float: ${({ align }) => align};
-  background-color: ${({ theme }) => theme.PRIMARY_COLOR};
-  color: ${({ theme }) => theme.DARK_BACKGROUND_GREY};
-  border: none;
-  font-size: 24px;
-  font-weight: bold;
-  border-radius: 4px;
-  padding: 4px 16px;
-
+  z-index: 10000;
   cursor: pointer;
-  transition: filter 0.5s;
-  /* &:hover {
-    filter: brightness(1.3);
-  } */
-  &:focus {
-    outline: none;
+  font-weight: bolder;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  width: 120px;
+  height: 40px;
+  font-size: 15px;
+  margin-top: 1.5vw;
+  & svg {
+    vertical-align: middle;
+    margin-right: 5px;
+    font-size: 20px;
   }
 `;
 
 const Button: FC<ButtonProps> = ({ name, align, onClick, type }) => (
   <StyledButton align={align} onClick={onClick} type={type}>
+    {name === '재생' ? <AiFillCaretRight /> : <BiInfoCircle />}
     {name}
   </StyledButton>
 );

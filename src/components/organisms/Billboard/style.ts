@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+interface StyledProps {
+  logo: boolean;
+}
+
 export const Button = styled.button`
   padding: 32px;
   background-color: hotpink;
@@ -60,23 +64,6 @@ export const LogoAndTextMetaLayer = styled.div`
   width: 100%;
   display: block;
 
-  & button {
-    z-index: 10000;
-    cursor: pointer;
-    font-weight: bolder;
-    border: none;
-    border-radius: 4px;
-    text-align: center;
-    width: 120px;
-    height: 40px;
-    font-size: 15px;
-    margin-top: 1.5vw;
-    & svg {
-      vertical-align: middle;
-      margin-right: 5px;
-      font-size: 20px;
-    }
-  }
   & button:last-child {
     margin-left: 15px;
     background-color: #6d6d6eb3;
@@ -84,15 +71,19 @@ export const LogoAndTextMetaLayer = styled.div`
   }
 `;
 
-export const InfoTitleWrapper = styled.div`
+export const InfoTitleWrapper = styled.div<StyledProps>`
   transform-origin: left bottom;
-  transform: scale(1) translate3d(0px, 0px, 0px);
+  transform: ${({ logo }) =>
+    logo ? 'scale(0.6) translate3d(0px, 100px, 0px) ' : 'scale(1) translate3d(0px, 0px, 0px)'};
   transition-duration: 1300ms;
-  transition-delay: 0ms;
+  transition-delay: ${({ logo }) => (logo ? '5000ms ' : '0ms')};
+
   & img {
     min-height: 13.2vw;
     position: relative;
     margin-bottom: 1.2vw;
+    width: 450px;
+    height: 300px;
   }
 `;
 
@@ -102,4 +93,10 @@ export const InfoWrapper = styled.div`
   transition-delay: 0ms;
   opacity: 1;
   color: white;
+`;
+
+export const InfoWrapperfade = styled.div<StyledProps>`
+  opacity: ${({ logo }) => (logo ? 0 : 1)};
+  transition-duration: 600ms;
+  transition-delay: 5000ms;
 `;
