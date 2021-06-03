@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Menu } from 'antd';
 
 export const HeaderLeftWrapper = styled.div`
   height: 68px;
@@ -33,5 +34,36 @@ export const HeaderLeftWrapper = styled.div`
         color: #b3b3b3;
       }
     }
+  }
+`;
+
+export const CustomMenu = styled(Menu)`
+  margin-top: 30px;
+  background: black;
+  width: 400px;
+  border-top: 3px solid white;
+  cursor: pointer;
+
+  & :hover {
+    background: transparent(0, 0, 0, 0.5);
+  }
+  & .ant-dropdown-menu-item-active {
+    background: rgba(255, 255, 255, 0.1);
+    & :hover {
+      color: white;
+    }
+    & :focus {
+      font-weight: bolder;
+    }
+  }
+`;
+
+export const CustomMenuItem = styled(Menu.Item)`
+  cursor: pointer;
+  padding: 20px;
+
+  & a {
+    color: white;
+    text-align: center;
   }
 `;
