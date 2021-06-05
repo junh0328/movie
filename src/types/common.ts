@@ -49,6 +49,32 @@ export type ContentDetail = {
   release_date: string;
 };
 
+export type production_companies = {
+  id: string;
+  logo_path: string;
+  name: string;
+};
+
+export type videosResult = {
+  results: videos[];
+};
+export type videos = {
+  id: string;
+  key: string;
+  name: string;
+};
+
+export type Billbord = {
+  id: number;
+  name: string;
+  backdrop_path: string;
+  overview: string;
+  poster_path: string;
+  title: string;
+  production_companies: production_companies[];
+  videos: videosResult;
+};
+
 export type PageResponse<T> = {
   page: number;
   results: T[];
