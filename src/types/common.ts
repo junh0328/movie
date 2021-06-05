@@ -39,6 +39,7 @@ export type ContentDetail = {
   adult: boolean;
   backdrop_path: string;
   title: string;
+  name: string;
   genres: Genre[];
   id: number;
   overview: string;
@@ -73,3 +74,12 @@ export type Billbord = {
   production_companies: production_companies[];
   videos: videosResult;
 };
+
+export type PageResponse<T> = {
+  page: number;
+  results: T[];
+  total_pages: number;
+  total_results: number;
+};
+
+export type ContentPageResponse = PageResponse<ContentDetail>;

@@ -17,7 +17,7 @@ function HeaderLeft(): JSX.Element {
           <Link to="/">홈</Link>
         </li>
         <li>
-          <Link to="/users">TV 프로그램</Link>
+          <Link to="/slider">TV 프로그램</Link>
         </li>
         <li>
           <Link to="/users">영화</Link>

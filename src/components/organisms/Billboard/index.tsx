@@ -27,22 +27,7 @@ const Billboard = () => {
     modestbranding: youtube logo 여부
     controls: playcontrols 표시여부
   */
-  const opts = useMemo(
-    () => ({
-      height: '900px',
-      width: '100%',
-      playerVars: {
-        start: 0,
-        end: 15,
-        autoplay: 1,
-        mute: 1,
-        rel: 0,
-        modestbranding: 1,
-        controls: 0,
-      },
-    }),
-    [],
-  );
+
   const onStart = useCallback(() => {
     alert('재생');
   }, []);
@@ -84,7 +69,11 @@ const Billboard = () => {
       {billbord?.videos?.results[0] ? (
         <ReactPlayer
           videoId={billbord.videos.results[0] ? billbord.videos.results[0].key : billbord.videos.results[0].key}
-          opts={opts}
+          opts={{
+            height: '900px',
+            width: '100%',
+            playerVars: { start: 0, end: 15, autoplay: 1, mute: 1, rel: 0, modestbranding: 1, controls: 0 },
+          }}
         />
       ) : (
         <img alt={billbord.title} src={`https://image.tmdb.org/t/p/original/${billbord.backdrop_path}`} />
