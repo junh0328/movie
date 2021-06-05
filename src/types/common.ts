@@ -47,3 +47,12 @@ export type ContentDetail = {
   status: string;
   release_date: string;
 };
+
+export type PageResponse<T> = {
+  page: number;
+  results: T[];
+  total_pages: number;
+  total_results: number;
+};
+
+export type ContentPageResponse = PageResponse<ContentDetail>;

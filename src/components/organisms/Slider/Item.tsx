@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Movie } from '@/types/movie';
 import SliderContext from './context';
+import { ContentDetail } from '@/types/common';
 
 type Props = {
-  movie: Movie;
+  movie: ContentDetail;
 };
 
 const Item = styled.div`
@@ -12,14 +12,12 @@ const Item = styled.div`
   transition: transform 300ms ease 100ms;
   margin: 0 2px;
   position: relative;
+  height: 200px;
+  width: 230px;
+  background-size: cover;
 
-  img {
-    height: 100%;
-    width: 100%;
-    vertical-align: top;
-  }
   span {
-    color: red;
+    color: white;
     font-size: 1.5rem;
     top: 0;
     left: 0;
@@ -34,9 +32,11 @@ function SliderItem(props: Props) {
     <SliderContext.Consumer>
       {({ elementRef }) => {
         return (
-          <Item ref={elementRef}>
-            <img src={movie.photo} />
-            <span>{movie.id}</span>
+          <Item
+            ref={elementRef}
+            style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})` }}
+          >
+            <span>{movie.title}</span>
           </Item>
         );
       }}
