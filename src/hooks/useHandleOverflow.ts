@@ -2,11 +2,15 @@ export default function usehandleOverFlow() {
   function hidden() {
     const x = document.getElementsByTagName('BODY')[0] as HTMLStyleElement;
     x.style.overflow = 'hidden';
+    const y = document.getElementsByClassName('css-1txpr4m')[0] as HTMLStyleElement;
+    y.style.background = 'black';
   }
 
   function show() {
     const x = document.getElementsByTagName('BODY')[0] as HTMLStyleElement;
     x.style.overflow = 'auto';
+    const y = document.getElementsByClassName('css-1txpr4m')[0] as HTMLStyleElement;
+    y.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0))';
   }
 
   return { hidden, show };
