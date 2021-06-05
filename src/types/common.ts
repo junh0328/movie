@@ -38,14 +38,24 @@ export type Genre = {
 export type ContentDetail = {
   id: number;
   title: string;
-  backdrop_path: string;
-  original_title?: string;
-  original_language?: string;
+  name: string;
   genres: Genre[];
   overview: string;
   revenue: number;
   runtime: number;
   status: string;
   release_date: string;
+  backdrop_path: string;
+  original_title?: string;
+  original_language?: string;
   adult?: boolean;
 };
+
+export type PageResponse<T> = {
+  page: number;
+  results: T[];
+  total_pages: number;
+  total_results: number;
+};
+
+export type ContentPageResponse = PageResponse<ContentDetail>;

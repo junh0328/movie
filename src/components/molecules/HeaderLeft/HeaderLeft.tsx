@@ -18,7 +18,7 @@ function HeaderLeft() {
         <Link to="/">홈</Link>
       </CustomMenuItem>
       <CustomMenuItem>
-        <Link to="/users">TV 프로그램</Link>
+        <Link to="/slider">TV 프로그램</Link>
       </CustomMenuItem>
       <CustomMenuItem>
         <Link to="/users">영화</Link>
@@ -53,7 +53,7 @@ function HeaderLeft() {
             <Link to="/">홈</Link>
           </li>
           <li>
-            <Link to="/users">TV 프로그램</Link>
+            <Link to="/slider">TV 프로그램</Link>
           </li>
           <li>
             <Link to="/users">영화</Link>
