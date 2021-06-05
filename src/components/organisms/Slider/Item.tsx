@@ -36,7 +36,7 @@ function SliderItem(props: Props) {
             ref={elementRef}
             style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})` }}
           >
-            <span>{movie.title}</span>
+            {movie.title ? <span>{movie.title}</span> : <span>{movie.name}</span>}
           </Item>
         );
       }}

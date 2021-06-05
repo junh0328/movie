@@ -3,12 +3,13 @@ import dotenv from 'dotenv';
 import { MainWrapper } from './style';
 import Billboard from '@/components/organisms/Billboard';
 import { SliderContainer, SliderItem } from '@/components/organisms/Slider';
-import { useTopRated } from '@/hooks/movie';
+import { useNetFlixOriginals, useTopRated } from '@/hooks/movie';
 
 dotenv.config();
 
 const Home: FC = () => {
   const { topRatedMovies } = useTopRated();
+  const { NetFlixOriginals } = useNetFlixOriginals();
 
   return (
     <>
@@ -22,6 +23,17 @@ const Home: FC = () => {
           {topRatedMovies.length ? (
             <SliderContainer>
               {topRatedMovies.map((movie) => {
+                return <SliderItem key={movie.id} movie={movie} />;
+              })}
+            </SliderContainer>
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
+        <div>
+          {NetFlixOriginals.length ? (
+            <SliderContainer>
+              {NetFlixOriginals.map((movie) => {
                 return <SliderItem key={movie.id} movie={movie} />;
               })}
             </SliderContainer>

@@ -39,6 +39,7 @@ export type ContentDetail = {
   adult: boolean;
   backdrop_path: string;
   title: string;
+  name: string;
   genres: Genre[];
   id: number;
   overview: string;
