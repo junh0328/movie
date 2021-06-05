@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState, useRef, useMemo } from 'react';
 import { BsFillBellFill } from 'react-icons/bs';
 import { FaSearch } from 'react-icons/fa';
+import { CloseOutlined } from '@ant-design/icons';
 import {
   CustomRiArrowDropDownFill,
   DropdownContentWrapper,
   HeaderRightWrapper,
   NavElement,
-  SearchForm,
   SearchInput,
   SearchWrapper,
   SecondaryNavigation,
@@ -14,19 +14,35 @@ import {
 } from './style';
 import { Dropdown, Menu, Switch as Switcher } from 'antd';
 import { GoSettings } from 'react-icons/go';
+import SearchModal from '../SearchModal';
+import axios from 'axios';
+import { ContentDetail } from '@/types/common';
+import { SearchQuery } from '@/apis';
+import { SearchModalWrapper } from './style';
+import usehandleOverFlow from '@/hooks/useHandleOverflow';
 
-function HeaderRight(): JSX.Element {
+const HeaderRight: React.FC = () => {
   const MenuStyle = useMemo(() => ({ padding: 20, width: 300, marginTop: 20 }), []);
   const BgStyle = useMemo(() => ({ background: 'white' }), []);
   const SpanStyle = useMemo(() => ({ marginRight: 10 }), []);
 
+  // input 값 관리
   const [value, setValue] = useState('');
+  // input 태그 포커스 관리
   const [focus, setFocus] = useState(false);
+  // 상세보기 버튼 값 관리
   const [onswitch, onsetSwitch] = useState(false);
+  // 검색 api 값 관리
+  const [fetchedData, setFetchedData] = useState<ContentDetail[]>([]);
+  // input 버튼 내부의 x 버튼 관리
+  const [showOutButton, setShowOutButton] = useState(false);
+  // input 태그 내부에 값 입력시 켜지는 모달 상태 관리
+  const [showSearchModal, setShowSearchModal] = useState(false);
+
+  const { hidden, show } = usehandleOverFlow();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  // 이런식으로 주는 게 아닌 것 같은데 구현은 되었습니다,,
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current?.focus();
@@ -37,22 +53,57 @@ function HeaderRight(): JSX.Element {
     onsetSwitch((prev) => !prev);
   }, []);
 
+  // search API 사용 부분
+  let datas = [];
+  const fetch = async (query: string) => {
+    try {
+      const response = await axios.get(SearchQuery(query));
+      datas = response.data.results;
+      setFetchedData(datas);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+    setShowOutButton(true);
+    setShowSearchModal(true);
+    hidden();
+    // key event가 1개 이상 작성됐을 때부터 기능 실행
+    if (e.target.value.length > 1) {
+      fetch(value);
+    }
   };
 
   const onClickFocus = useCallback(() => {
     setFocus((prev) => !prev);
   }, []);
 
+  // value (search 의 input) 값에 유무에 따른 ShowOutButton 상태 관리
+  useEffect(() => {
+    if (!value) {
+      setShowOutButton(false);
+      setShowSearchModal(false);
+      show();
+    }
+  }, [value]);
+
+  // x 버튼이 있다면 (value 값을 입력한 상황이라면) removeFocus 함수를 발동시키지 않고 싶어요
   const removeFocus = useCallback(() => {
-    setFocus(false);
+    if (!showOutButton) {
+      setFocus(false);
+      setShowSearchModal(false);
+      setValue('');
+    }
+  }, [showOutButton]);
+
+  // x 버튼을 누르면 removeFocus와 같은 처리
+  const onCloseModal = useCallback(() => {
+    show();
+    setShowSearchModal(false);
     setValue('');
   }, []);
-
-  // useEffect(() => {
-  //   console.log('focus 상태:', focus);
-  // }, [focus]);
 
   const menu = (
     <Menu style={MenuStyle}>
@@ -75,7 +126,7 @@ function HeaderRight(): JSX.Element {
           <SearchWrapper onClick={onClickFocus} onBlur={removeFocus} className={focus ? 'search-focused' : ''}>
             <FaSearch style={{ marginLeft: 5 }} />
             {focus && (
-              <SearchForm>
+              <div style={{ width: '240px' }}>
                 <SearchInput
                   onClick={(e) => {
                     e.stopPropagation();
@@ -85,7 +136,8 @@ function HeaderRight(): JSX.Element {
                   onChange={onChangeInput}
                   ref={inputRef}
                 />
-              </SearchForm>
+                {showOutButton && <CloseOutlined onClick={onCloseModal} style={{ marginRight: 5 }} />}
+              </div>
             )}
           </SearchWrapper>
         </NavElement>
@@ -114,8 +166,31 @@ function HeaderRight(): JSX.Element {
           </Dropdown>
         </NavElement>
       </SecondaryNavigation>
+      {/* search api를 모달을 통해 구현 */}
+      {showSearchModal && (
+        <SearchModalWrapper>
+          {fetchedData && (
+            <div
+              style={{
+                overflow: 'auto',
+                alignItems: 'center',
+                display: 'flex',
+                flexWrap: 'wrap',
+                paddingLeft: '4%',
+                paddingRight: '4%',
+              }}
+            >
+              {fetchedData.map((f) => (
+                <SearchModal key={f.id} data={f} />
+              ))}
+            </div>
+          )}
+        </SearchModalWrapper>
+      )}
     </HeaderRightWrapper>
   );
-}
+};
 
 export default HeaderRight;
+
+// fetchedData가 있을 때, <body></body> 에다 overflow:hidden 속성을 줄 수 있나?

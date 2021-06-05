@@ -36,17 +36,19 @@ export type Genre = {
 };
 
 export type ContentDetail = {
-  adult: boolean;
-  backdrop_path: string;
+  id: number;
   title: string;
   name: string;
   genres: Genre[];
-  id: number;
   overview: string;
   revenue: number;
   runtime: number;
   status: string;
   release_date: string;
+  backdrop_path: string;
+  original_title?: string;
+  original_language?: string;
+  adult?: boolean;
 };
 
 export type production_companies = {

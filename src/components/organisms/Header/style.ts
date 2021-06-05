@@ -6,7 +6,8 @@ export const PinningHeader = styled.div`
   top: 0;
   width: 100%;
   height: 70px;
-  background: transparent;
+  // netflix header 그라데이션 참고
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0));
 
   & .scrolled {
     width: 100%;
