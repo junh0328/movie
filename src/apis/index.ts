@@ -6,6 +6,7 @@ export const Genre = `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=e
 
 // fetching netflix apis
 export const NetFlixOriginals = `${BASE_URL}/discover/tv?api_key=${API_KEY}&with_networks=213`;
+export const NetFlixMovieOriginals = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_networks=213`;
 export const TopRated = `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=en-US`;
 export const Action = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=28`;
 export const Comedy = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=35`;

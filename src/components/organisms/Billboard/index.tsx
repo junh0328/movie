@@ -1,44 +1,104 @@
-import { BillboardWrap, InfoMetaLayer, InfoTitleWrapper, InfoWrapper, LogoAndTextMetaLayer } from './style';
-import spiderman from '@/images/spiderman.png';
-import logoTitle from '@/images/logoTitle.png';
-import { AiFillCaretRight } from 'react-icons/ai';
-import { BiInfoCircle } from 'react-icons/bi';
+import { useCallback, useEffect, useState, useLayoutEffect, useMemo } from 'react';
+import ReactPlayer from 'react-youtube';
+import axios from 'axios';
 
-// 후에 props를 바탕으로 재사용가능한 컴포넌트로 바꿔야 함
+import {
+  BillboardWrap,
+  InfoMetaLayer,
+  InfoTitleWrapper,
+  InfoWrapper,
+  LogoAndTextMetaLayer,
+  InfoWrapperfade,
+} from './style';
+import Button from '@/components/atoms/Button/Billboard';
+import { ResponseType, Billbord } from '@/types/common';
+import { NetFlixMovieOriginals, MovieDetail } from '@/apis';
 
-function Billboard() {
-  return (
+const Billboard = () => {
+  const [billbord, setBillbord] = useState<Billbord>();
+  const [logo, setLogo] = useState<boolean>(false);
+
+  /*
+    start: 시작
+    end : 종료
+    autoplay: 자동재생 여부(0, 1)
+    mute: 음소거(0,1)
+    rel: 종료후 관련 영상 표시 여부(0, 1)
+    modestbranding: youtube logo 여부
+    controls: playcontrols 표시여부
+  */
+
+  const onStart = useCallback(() => {
+    alert('재생');
+  }, []);
+  const onDetail = useCallback(() => {
+    alert('상세정보');
+  }, []);
+
+  const fetchBillbord = async () => {
+    try {
+      const {
+        data: { results },
+      } = await axios.get<ResponseType>(NetFlixMovieOriginals); //prop
+
+      const { id } = results[Math.floor(Math.random() * results.length)]; //random movie
+
+      const { data: billbordData } = await axios.get<Billbord>(MovieDetail(id), {
+        params: {
+          append_to_response: 'videos',
+        },
+      });
+
+      setBillbord(billbordData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBillbord();
+  }, []);
+
+  useLayoutEffect(() => {
+    const timer: ReturnType<typeof setTimeout> = setTimeout(() => setLogo(true), 1000);
+    return () => clearTimeout(timer);
+  }, [logo]);
+
+  return billbord ? (
     <BillboardWrap>
-      <img src={spiderman} alt="spiderman" />
+      {billbord?.videos?.results[0] ? (
+        <ReactPlayer
+          videoId={billbord.videos.results[0] ? billbord.videos.results[0].key : billbord.videos.results[0].key}
+          opts={{
+            height: '900px',
+            width: '100%',
+            playerVars: { start: 0, end: 15, autoplay: 1, mute: 1, rel: 0, modestbranding: 1, controls: 0 },
+          }}
+        />
+      ) : (
+        <img alt={billbord.title} src={`https://image.tmdb.org/t/p/original/${billbord.backdrop_path}`} />
+      )}
+
       <InfoMetaLayer>
         <LogoAndTextMetaLayer>
-          <InfoTitleWrapper>
-            <img src={logoTitle} alt="spidermanLogo" />
+          <InfoTitleWrapper logo={logo}>
+            {billbord.production_companies[0].logo_path ? (
+              <img src={`https://image.tmdb.org/t/p/original${billbord.production_companies[0].logo_path}`} />
+            ) : (
+              <>No img</>
+            )}
           </InfoTitleWrapper>
           <InfoWrapper>
-            유럽 여행에서 사랑을 고백하려 한 피터 파커. 근데 맙소사, 새로운 악당의 출현이라니, 게다가 닉 퓨리가 찾아와
-            도움을 청하네. 이렇게 된 이상 또 다시 세상을 구할 수밖에.
+            <InfoWrapperfade logo={logo}>{billbord.overview}</InfoWrapperfade>
           </InfoWrapper>
-          <button
-            onClick={() => {
-              alert('재생');
-            }}
-          >
-            <AiFillCaretRight />
-            재생
-          </button>
-          <button
-            onClick={() => {
-              alert('상세정보');
-            }}
-          >
-            <BiInfoCircle />
-            상세 정보
-          </button>
+          <Button name="재생" onClick={onStart} type="button" />
+          <Button name="상세정보" onClick={onDetail} type="button" />
         </LogoAndTextMetaLayer>
       </InfoMetaLayer>
     </BillboardWrap>
+  ) : (
+    <span>Loading</span>
   );
-}
+};
 
 export default Billboard;
