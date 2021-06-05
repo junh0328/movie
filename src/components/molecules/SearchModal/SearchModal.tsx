@@ -12,14 +12,14 @@ function SearchModal({ data }: Props) {
   const selectContent = (id: number) => setSelectedContent(id);
   return (
     <>
-      <ul key={data.id} style={{ listStyle: 'none', paddingLeft: 0, marginTop: 0 }}>
+      <ul key={data.id} style={{ listStyle: 'none', paddingLeft: 0, marginTop: 0, marginBottom: 0 }}>
         <li key={data.id}>
-          <div style={{ width: 310, marginRight: 5 }}>
+          <div style={{ width: 330 }}>
             {data.backdrop_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/original/${data.backdrop_path}`}
                 alt={data.original_title}
-                style={{ width: 300, cursor: 'pointer' }}
+                style={{ width: '95%', cursor: 'pointer' }}
                 onClick={() => selectContent(data.id)}
               />
             ) : (

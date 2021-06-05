@@ -19,6 +19,7 @@ import axios from 'axios';
 import { ContentDetail } from '@/types/common';
 import { SearchQuery } from '@/apis';
 import { SearchModalWrapper } from './style';
+import usehandleOverFlow from '@/hooks/useHandleOverflow';
 
 const HeaderRight: React.FC = () => {
   const MenuStyle = useMemo(() => ({ padding: 20, width: 300, marginTop: 20 }), []);
@@ -37,6 +38,8 @@ const HeaderRight: React.FC = () => {
   const [showOutButton, setShowOutButton] = useState(false);
   // input 태그 내부에 값 입력시 켜지는 모달 상태 관리
   const [showSearchModal, setShowSearchModal] = useState(false);
+
+  const { hidden, show } = usehandleOverFlow();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -66,6 +69,7 @@ const HeaderRight: React.FC = () => {
     setValue(e.target.value);
     setShowOutButton(true);
     setShowSearchModal(true);
+    hidden();
     // key event가 1개 이상 작성됐을 때부터 기능 실행
     if (e.target.value.length > 1) {
       fetch(value);
@@ -80,6 +84,8 @@ const HeaderRight: React.FC = () => {
   useEffect(() => {
     if (!value) {
       setShowOutButton(false);
+      setShowSearchModal(false);
+      show();
     }
   }, [value]);
 
@@ -94,6 +100,7 @@ const HeaderRight: React.FC = () => {
 
   // x 버튼을 누르면 removeFocus와 같은 처리
   const onCloseModal = useCallback(() => {
+    show();
     setShowSearchModal(false);
     setValue('');
   }, []);
@@ -119,7 +126,7 @@ const HeaderRight: React.FC = () => {
           <SearchWrapper onClick={onClickFocus} onBlur={removeFocus} className={focus ? 'search-focused' : ''}>
             <FaSearch style={{ marginLeft: 5 }} />
             {focus && (
-              <>
+              <div style={{ width: '240px' }}>
                 <SearchInput
                   onClick={(e) => {
                     e.stopPropagation();
@@ -130,8 +137,7 @@ const HeaderRight: React.FC = () => {
                   ref={inputRef}
                 />
                 {showOutButton && <CloseOutlined onClick={onCloseModal} style={{ marginRight: 5 }} />}
-                {/* onClick={removeFocus} */}
-              </>
+              </div>
             )}
           </SearchWrapper>
         </NavElement>
@@ -164,7 +170,16 @@ const HeaderRight: React.FC = () => {
       {showSearchModal && (
         <SearchModalWrapper>
           {fetchedData && (
-            <div style={{ display: 'flex', flexWrap: 'wrap', paddingLeft: '4%', paddingRight: '4%' }}>
+            <div
+              style={{
+                overflow: 'auto',
+                alignItems: 'center',
+                display: 'flex',
+                flexWrap: 'wrap',
+                paddingLeft: '4%',
+                paddingRight: '4%',
+              }}
+            >
               {fetchedData.map((f) => (
                 <SearchModal key={f.id} data={f} />
               ))}
@@ -177,3 +192,5 @@ const HeaderRight: React.FC = () => {
 };
 
 export default HeaderRight;
+
+// fetchedData가 있을 때, <body></body> 에다 overflow:hidden 속성을 줄 수 있나?
