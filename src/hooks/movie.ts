@@ -1,6 +1,32 @@
 import { useState, useEffect } from 'react';
 import { ContentDetail } from '@/types/common';
-import { fetchNetFlixOriginals, fetchTopRated } from '@/apis/movie';
+import {
+  fetchAction,
+  fetchComedy,
+  fetchDocumentary,
+  fetchHorror,
+  fetchNetFlixMovieOriginals,
+  // fetchNetFlixOriginals,
+  fetchRomance,
+  fetchTopRated,
+} from '@/apis/movie';
+
+// 커스텀 함수
+/*
+  export const useFetchMovieGenre = (func: any) => {
+    const [data, setData] = useState<ContentDetail[]>([]);
+
+    useEffect(() => {
+      async () => {
+        const res = await func();
+        if (res) {
+          setData(res.results);
+        }
+      };
+    }, []);
+    return { result: data };
+  };
+*/
 
 export const useTopRated = () => {
   const [data, setData] = useState<ContentDetail[]>([]);
@@ -8,7 +34,6 @@ export const useTopRated = () => {
   useEffect(() => {
     (async () => {
       const res = await fetchTopRated();
-
       if (res) {
         setData(res.results);
       }
@@ -18,12 +43,86 @@ export const useTopRated = () => {
   return { topRatedMovies: data };
 };
 
-export const useNetFlixOriginals = () => {
+// export const useNetFlixOriginals = () => {
+//   const [data, setData] = useState<ContentDetail[]>([]);
+
+//   useEffect(() => {
+//     (async () => {
+//       const res = await fetchNetFlixOriginals();
+//       if (res) {
+//         setData(res.results);
+//       }
+//     })();
+//   }, []);
+
+//   return { NetFlixOriginals: data };
+// };
+
+export const useNetFlixOMovieOriginals = () => {
   const [data, setData] = useState<ContentDetail[]>([]);
 
   useEffect(() => {
     (async () => {
-      const res = await fetchNetFlixOriginals();
+      const res = await fetchNetFlixMovieOriginals();
+      if (res) {
+        setData(res.results);
+      }
+    })();
+  }, []);
+
+  return { NetFlixMovieOriginals: data };
+};
+
+export const useAction = () => {
+  const [data, setData] = useState<ContentDetail[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const res = await fetchAction();
+      if (res) {
+        setData(res.results);
+      }
+    })();
+  }, []);
+
+  return { Action: data };
+};
+
+export const useComedy = () => {
+  const [data, setData] = useState<ContentDetail[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const res = await fetchComedy();
+      if (res) {
+        setData(res.results);
+      }
+    })();
+  }, []);
+
+  return { Comedy: data };
+};
+
+export const useHorror = () => {
+  const [data, setData] = useState<ContentDetail[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const res = await fetchHorror();
+      if (res) {
+        setData(res.results);
+      }
+    })();
+  }, []);
+
+  return { Horror: data };
+};
+
+export const useRomance = () => {
+  const [data, setData] = useState<ContentDetail[]>([]);
+  useEffect(() => {
+    (async () => {
+      const res = await fetchRomance();
 
       if (res) {
         setData(res.results);
@@ -31,5 +130,19 @@ export const useNetFlixOriginals = () => {
     })();
   }, []);
 
-  return { NetFlixOriginals: data };
+  return { Romance: data };
+};
+
+export const useDocumentary = () => {
+  const [data, setData] = useState<ContentDetail[]>([]);
+  useEffect(() => {
+    (async () => {
+      const res = await fetchDocumentary();
+      if (res) {
+        setData(res.results);
+      }
+    })();
+  }, []);
+
+  return { Documentary: data };
 };

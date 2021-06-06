@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, useLayoutEffect, useMemo } from 'react';
+import { useCallback, useEffect, useState, useLayoutEffect } from 'react';
 import ReactPlayer from 'react-youtube';
 import axios from 'axios';
 
@@ -68,11 +68,19 @@ const Billboard = () => {
     <BillboardWrap>
       {billbord?.videos?.results[0] ? (
         <ReactPlayer
-          videoId={billbord.videos.results[0] ? billbord.videos.results[0].key : billbord.videos.results[0].key}
+          videoId={billbord.videos.results[0] && billbord.videos.results[0].key}
           opts={{
             height: '900px',
             width: '100%',
-            playerVars: { start: 0, end: 15, autoplay: 1, mute: 1, rel: 0, modestbranding: 1, controls: 0 },
+            playerVars: {
+              start: 0,
+              end: 60,
+              autoplay: 1,
+              mute: 0,
+              rel: 0,
+              modestbranding: 1,
+              controls: 0,
+            },
           }}
         />
       ) : (

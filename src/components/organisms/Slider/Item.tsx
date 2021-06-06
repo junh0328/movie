@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from '@emotion/styled';
 import SliderContext from './context';
 import { ContentDetail } from '@/types/common';
@@ -26,6 +26,16 @@ const Item = styled.div`
 `;
 
 function SliderItem(props: Props) {
+  const nameStyle = useMemo(
+    () => ({
+      display: 'flex',
+      justifyContent: 'left',
+      alignSelf: 'flex-end',
+      marginLeft: 10,
+      marginBottom: 10,
+    }),
+    [],
+  );
   const { movie } = props;
 
   return (
@@ -34,9 +44,18 @@ function SliderItem(props: Props) {
         return (
           <Item
             ref={elementRef}
-            style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})` }}
+            style={{
+              display: 'flex',
+              backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`,
+            }}
           >
-            {movie.title ? <span>{movie.title}</span> : <span>{movie.name}</span>}
+            <div style={nameStyle}>
+              {movie.title ? (
+                <b style={{ fontSize: '1rem', fontWeight: 'normal' }}>{movie.title}</b>
+              ) : (
+                <b style={{ fontSize: '1rem', fontWeight: 'normal' }}>{movie.name}</b>
+              )}
+            </div>
           </Item>
         );
       }}

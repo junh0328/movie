@@ -15,10 +15,10 @@ export const useSliding = (elementWidth: number, countElements: number) => {
 
       setContainerWidth(newContainerWidth);
 
-      console.log(newContainerWidth);
-      console.log(elementWidth);
+      // console.log(newContainerWidth);
+      // console.log(elementWidth);
       setTotalInViewport(Math.floor(newContainerWidth / elementWidth));
-      console.log('111');
+      // console.log('111');
     }
   }, [wrapperRef.current]);
 
@@ -39,7 +39,7 @@ export const useSliding = (elementWidth: number, countElements: number) => {
   const hasPrev = distance < 0;
   const hasNext = viewed + totalInViewport < countElements;
 
-  console.log(totalInViewport);
+  // console.log(totalInViewport);
 
   return { handlePrev, handleNext, slideProps, wrapperRef, hasPrev, hasNext };
 };

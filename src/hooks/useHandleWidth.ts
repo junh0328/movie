@@ -5,11 +5,9 @@ export default function handleWidth() {
 
   const handleSize = useCallback(() => {
     if (window.innerWidth < 1080) {
-      console.log('상태 값 변화 : ', dropDownView);
       setDropdownView(true);
     } else {
       setDropdownView(false);
-      console.log('상태 값 변화 : ', dropDownView);
     }
   }, []);
 

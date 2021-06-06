@@ -19,7 +19,7 @@ export const Button = styled.button`
 export const BillboardWrap = styled.div`
   position: relative;
   color: black;
-
+  margin-bottom: 3%;
   & img {
     background-position: center center;
     -webkit-background-size: cover;
@@ -43,7 +43,7 @@ export const InfoMetaLayer = styled.div`
   top: 0;
   bottom: 15%;
   left: 4%;
-  width: 36%;
+  width: 50%;
   z-index: 10;
   display: flex;
   -webkit-box-pack: end;
@@ -69,6 +69,13 @@ export const LogoAndTextMetaLayer = styled.div`
     background-color: #6d6d6eb3;
     color: white;
   }
+
+  /* @media (max-width: 720px) {
+    & button:last-child {
+      margin-top: 15px;
+      margin-left: 0;
+    }
+  } */
 `;
 
 export const InfoTitleWrapper = styled.div<StyledProps>`

@@ -10,7 +10,7 @@ export const NetFlixMovieOriginals = `${BASE_URL}/discover/movie?api_key=${API_K
 export const TopRated = `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=en-US`;
 export const Action = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=28`;
 export const Comedy = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=35`;
-export const Horro = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=27`;
+export const Horror = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=27`;
 export const Romance = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=10749`;
 export const Documentary = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=99`;
 
