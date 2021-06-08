@@ -38,6 +38,7 @@ const HeaderRight: React.FC = () => {
   const [showOutButton, setShowOutButton] = useState(false);
   // input 태그 내부에 값 입력시 켜지는 모달 상태 관리
   const [showSearchModal, setShowSearchModal] = useState(false);
+  // query 문의 page 수를 관리
 
   const { hidden, show } = usehandleOverFlow();
 
@@ -48,6 +49,12 @@ const HeaderRight: React.FC = () => {
       inputRef.current?.focus();
     }
   });
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      console.log('scrolled');
+    });
+  }, []);
 
   const onClickSwitch = useCallback(() => {
     onsetSwitch((prev) => !prev);

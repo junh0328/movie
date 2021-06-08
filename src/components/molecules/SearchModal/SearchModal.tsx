@@ -1,15 +1,32 @@
 import { ContentDetail } from '@/types/common';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GithubOutlined } from '@ant-design/icons';
 import Modal from '@/components/organisms/Modal';
+import useHandleSearchModal from '@/hooks/useHandleSearchModal';
 
 type Props = {
   data: ContentDetail;
 };
 
-function SearchModal({ data }: Props) {
+function SearchModal(props: Props) {
+  const { data } = props;
+  const scrollHeight = document.documentElement.scrollHeight;
+  const scrollTop = document.documentElement.scrollTop;
+  const clientHeight = document.documentElement.clientHeight;
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      console.log('innerscroll!');
+    });
+  }, []);
+
+  if (scrollTop + clientHeight >= scrollHeight) {
+    console.log('do it');
+  }
+
   const [selectedContent, setSelectedContent] = useState<number | undefined>(undefined);
   const selectContent = (id: number) => setSelectedContent(id);
+
   return (
     <>
       <ul key={data.id} style={{ listStyle: 'none', paddingLeft: 0, marginTop: 0, marginBottom: 0 }}>

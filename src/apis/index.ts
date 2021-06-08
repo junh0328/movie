@@ -20,3 +20,7 @@ export const MovieDetail = (id: number) => `${BASE_URL}/movie/${id}?api_key=${AP
 // fetching search query
 export const SearchQuery = (query: string) =>
   `${BASE_URL}/search/movie?api_key=${API_KEY}&include_adult=false&sort_by=&query=${query}&language=en-US&page=1`;
+
+// update search queries datas
+export const UpdateQuery = (query: string, page: number) =>
+  `${BASE_URL}/search/movie?api_key=${API_KEY}&include_adult=false&sort_by=&query=${query}&language=en-US&page=${page}`;
