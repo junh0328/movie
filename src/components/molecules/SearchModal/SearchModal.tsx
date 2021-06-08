@@ -1,8 +1,8 @@
 import { ContentDetail } from '@/types/common';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { GithubOutlined } from '@ant-design/icons';
 import Modal from '@/components/organisms/Modal';
-import useHandleSearchModal from '@/hooks/useHandleSearchModal';
+// import useHandleSearchModal from '@/hooks/useHandleSearchModal';
 
 type Props = {
   data: ContentDetail;
@@ -10,20 +10,6 @@ type Props = {
 
 function SearchModal(props: Props) {
   const { data } = props;
-  const scrollHeight = document.documentElement.scrollHeight;
-  const scrollTop = document.documentElement.scrollTop;
-  const clientHeight = document.documentElement.clientHeight;
-
-  useEffect(() => {
-    window.addEventListener('scroll', () => {
-      console.log('innerscroll!');
-    });
-  }, []);
-
-  if (scrollTop + clientHeight >= scrollHeight) {
-    console.log('do it');
-  }
-
   const [selectedContent, setSelectedContent] = useState<number | undefined>(undefined);
   const selectContent = (id: number) => setSelectedContent(id);
 
@@ -31,7 +17,7 @@ function SearchModal(props: Props) {
     <>
       <ul key={data.id} style={{ listStyle: 'none', paddingLeft: 0, marginTop: 0, marginBottom: 0 }}>
         <li key={data.id}>
-          <div style={{ width: 330 }}>
+          <div style={{ width: 290 }}>
             {data.backdrop_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/original/${data.backdrop_path}`}
@@ -50,7 +36,7 @@ function SearchModal(props: Props) {
                   paddingTop: 0,
                   cursor: 'pointer',
                 }}
-                onClick={() => alert('There is no backdrop_path')}
+                onClick={() => alert(`${data.id}\n${data.original_title}\nThere is no backdrop_path`)}
               >
                 <GithubOutlined />
               </div>

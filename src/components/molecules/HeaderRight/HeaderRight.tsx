@@ -20,6 +20,7 @@ import { ContentDetail } from '@/types/common';
 import { SearchQuery } from '@/apis';
 import { SearchModalWrapper } from './style';
 import usehandleOverFlow from '@/hooks/useHandleOverflow';
+import _ from 'lodash';
 
 const HeaderRight: React.FC = () => {
   const MenuStyle = useMemo(() => ({ padding: 20, width: 300, marginTop: 20 }), []);
@@ -50,12 +51,6 @@ const HeaderRight: React.FC = () => {
     }
   });
 
-  useEffect(() => {
-    window.addEventListener('scroll', () => {
-      console.log('scrolled');
-    });
-  }, []);
-
   const onClickSwitch = useCallback(() => {
     onsetSwitch((prev) => !prev);
   }, []);
@@ -63,6 +58,7 @@ const HeaderRight: React.FC = () => {
   // search API 사용 부분
   let datas = [];
   const fetch = async (query: string) => {
+    if (query.length === 0) return;
     try {
       const response = await axios.get(SearchQuery(query));
       datas = response.data.results;
@@ -72,14 +68,19 @@ const HeaderRight: React.FC = () => {
     }
   };
 
+  const delayedQueryCall = useRef(_.debounce((q) => fetch(q), 1000)).current;
+
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+    delayedQueryCall(e.target.value);
     setShowOutButton(true);
     setShowSearchModal(true);
     hidden();
-    // key event가 1개 이상 작성됐을 때부터 기능 실행
-    if (e.target.value.length > 1) {
+    // key e가 1개 이상 작성됐을 때부터 기능 실행
+    if (e.target.value.length) {
       fetch(value);
+    } else {
+      return;
     }
   };
 
