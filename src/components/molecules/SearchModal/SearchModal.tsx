@@ -2,7 +2,8 @@ import { ContentDetail } from '@/types/common';
 import React, { useState } from 'react';
 import { GithubOutlined } from '@ant-design/icons';
 import Modal from '@/components/organisms/Modal';
-// import useHandleSearchModal from '@/hooks/useHandleSearchModal';
+
+import useHandleSearchModal from '@/hooks/useHandleSearchModal';
 
 type Props = {
   data: ContentDetail;
@@ -12,6 +13,10 @@ function SearchModal(props: Props) {
   const { data } = props;
   const [selectedContent, setSelectedContent] = useState<number | undefined>(undefined);
   const selectContent = (id: number) => setSelectedContent(id);
+
+  const { scrollToBottom } = useHandleSearchModal();
+
+  scrollToBottom();
 
   return (
     <>

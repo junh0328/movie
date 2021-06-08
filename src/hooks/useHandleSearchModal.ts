@@ -1,3 +1,36 @@
+export default function useHandleSearchModal() {
+  function scrollToBottom() {
+    const x = document.getElementsByClassName('css-1w1xy1c')[0] as HTMLDivElement;
+    if (x) {
+      // console.log('x 가 있습니다.');
+      x.addEventListener('scroll', onScroll);
+    } else {
+      console.log('x 가 없습니다');
+    }
+
+    function onScroll() {
+      const whatIwant = x.scrollTop;
+      const whatIneed = x.scrollHeight;
+      const whatifeel = x.clientHeight;
+
+      // const scrollHeight = document.documentElement.scrollHeight;
+      // const scrollTop = document.documentElement.scrollTop;
+      // const clientHeight = document.documentElement.clientHeight;
+
+      // console.log('scrollTop: ', whatIwant, '\nscrollHeight: ', whatIneed, '\nclientHeight: ', whatifeel);
+
+      if (whatIwant + whatifeel >= whatIneed) {
+        setTimeout(() => {
+          console.log('scrolled!');
+        }, 3000);
+      }
+    }
+    // alert('더이상 불러올 수 없습니다');
+  }
+  return { scrollToBottom };
+}
+
+/*
 import { useEffect, useState } from 'react';
 
 export default function useHandleSearchModal() {
@@ -23,3 +56,5 @@ export default function useHandleSearchModal() {
 
   return { page, scrolling, setScrolling, onScroll };
 }
+
+*/

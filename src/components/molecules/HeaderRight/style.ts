@@ -75,8 +75,8 @@ export const SearchModalWrapper = styled.div`
   right: 0;
   z-index: 10001;
 
-  & div {
-    /* margin-top: 200px; */
+  /* & div {
+    margin-top: 200px; 
     display: inline-block;
     width: 100%;
     height: 100%;
@@ -88,5 +88,23 @@ export const SearchModalWrapper = styled.div`
     & h1 {
       color: white;
     }
+  } */
+`;
+export const SearchWrapMain = styled.div`
+  width: 100%;
+  height: 100%;
+  background: black;
+  user-select: none;
+  max-width: 100%;
+  padding-top: 4%;
+  position: relative;
+  overflow: auto;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 4%;
+  padding-bottom: 4%;
+  & h1 {
+    color: white;
   }
 `;

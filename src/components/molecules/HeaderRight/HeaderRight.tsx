@@ -9,6 +9,7 @@ import {
   NavElement,
   SearchInput,
   SearchWrapper,
+  SearchWrapMain,
   SecondaryNavigation,
   ToggleWrapper,
 } from './style';
@@ -26,6 +27,10 @@ const HeaderRight: React.FC = () => {
   const MenuStyle = useMemo(() => ({ padding: 20, width: 300, marginTop: 20 }), []);
   const BgStyle = useMemo(() => ({ background: 'white' }), []);
   const SpanStyle = useMemo(() => ({ marginRight: 10 }), []);
+  const noSearchStyle = useMemo(
+    () => ({ display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4rem' }),
+    [],
+  );
 
   // input 값 관리
   const [value, setValue] = useState('');
@@ -62,7 +67,13 @@ const HeaderRight: React.FC = () => {
     try {
       const response = await axios.get(SearchQuery(query));
       datas = response.data.results;
+      // console.log(datas);
       setFetchedData(datas);
+
+      if (datas.length == 0) {
+        // console.log('빈배열입니다');
+        setFetchedData([]);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -177,21 +188,14 @@ const HeaderRight: React.FC = () => {
       {/* search api를 모달을 통해 구현 */}
       {showSearchModal && (
         <SearchModalWrapper>
-          {fetchedData && (
-            <div
-              style={{
-                overflow: 'auto',
-                alignItems: 'center',
-                display: 'flex',
-                flexWrap: 'wrap',
-                paddingLeft: '4%',
-                paddingRight: '4%',
-              }}
-            >
+          {fetchedData?.length ? (
+            <SearchWrapMain>
               {fetchedData.map((f) => (
                 <SearchModal key={f.id} data={f} />
               ))}
-            </div>
+            </SearchWrapMain>
+          ) : (
+            <SearchWrapMain style={noSearchStyle}>검색 결과가 없습니다</SearchWrapMain>
           )}
         </SearchModalWrapper>
       )}
