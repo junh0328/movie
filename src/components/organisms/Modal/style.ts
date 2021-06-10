@@ -19,6 +19,8 @@ export const ModalWrap = styled.div`
   z-index: 10;
   left: 10%;
   position: fixed;
+  display: flex;
+  flex-wrap: wrap;
   border-radius: 10px;
   padding: 20px;
 `;

@@ -38,7 +38,7 @@ const Modal = ({ contentId, onClickHandler }: { contentId: number; onClickHandle
     // <ModalOutWrapper onClick={() => alert('clicked!')}>
     <ModalWrap>
       <ModalImage alt={content.title} src={`https://image.tmdb.org/t/p/original/${content.backdrop_path}`} />
-      <section>
+      <section style={{ paddingTop: '30%', paddingLeft: '4%' }}>
         <ModalTitle>{content.title}</ModalTitle>
         <div>
           <ModalBar />총 {content.runtime}분 중 0분
@@ -62,7 +62,7 @@ const Modal = ({ contentId, onClickHandler }: { contentId: number; onClickHandle
           </div>
         </ButtonWrapper>
       </section>
-      <ModalInfoWrapper style={{ display: 'flex' }}>
+      <ModalInfoWrapper style={{ display: 'flex', paddingLeft: '4%' }}>
         <section>
           <div>
             <span style={{ color: '#45D369' }}>75% 일치 </span>
@@ -79,7 +79,10 @@ const Modal = ({ contentId, onClickHandler }: { contentId: number; onClickHandle
     </ModalWrap>
   ) : (
     // </ModalOutWrapper>
-    <span>Loading</span>
+    <ModalWrap style={{ justifyContent: 'center', alignItems: 'center' }}>
+      <span style={{ fontSize: '6rem', color: '#e5e5e5' }}>해당하는 데이터가 없습니다</span>
+      <CloseButton onClickHandler={onClickHandler} />
+    </ModalWrap>
   );
 };
 
