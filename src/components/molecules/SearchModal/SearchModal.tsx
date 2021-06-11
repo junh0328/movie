@@ -21,7 +21,7 @@ function SearchModal(props: Props) {
   return (
     <>
       <ul key={data.id} style={{ listStyle: 'none', paddingLeft: 0, marginTop: 0, marginBottom: 0 }}>
-        <li key={data.id}>
+        <li key={data.id} style={{ marginBottom: '3%' }}>
           <div style={{ width: 290 }}>
             {data.backdrop_path ? (
               <img

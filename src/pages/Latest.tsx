@@ -2,35 +2,57 @@ import { FC, useEffect, useState } from 'react';
 import { MainWrapper, SliderName } from './style';
 import { SliderContainer, SliderItem } from '@/components/organisms/Slider';
 import { ContentDetail } from '@/types/common';
-import { Action, Comedy, Documentary, Horror, NetFlixMovieOriginals, Romance, TopRated } from '@/apis';
+import { Action, ScienceFiction, Documentary, Horror, NetFlixMovieOriginals, Romance, Animation } from '@/apis';
 import useMovieFetch from '@/hooks/useMovieFetch';
 
 const Latest: FC = () => {
   const [upLoad, setUpLoad] = useState(false);
 
-  const topRatedMovies = useMovieFetch<ContentDetail[]>(TopRated, 'GET');
+  const Animations = useMovieFetch<ContentDetail[]>(Animation, 'GET');
   const netFlixMovieOriginals = useMovieFetch<ContentDetail[]>(NetFlixMovieOriginals, 'GET');
   const action = useMovieFetch<ContentDetail[]>(Action, 'GET');
-  const comedy = useMovieFetch<ContentDetail[]>(Comedy, 'GET');
+  const ScienceFictionDatas = useMovieFetch<ContentDetail[]>(ScienceFiction, 'GET');
   const documentary = useMovieFetch<ContentDetail[]>(Documentary, 'GET');
   const horror = useMovieFetch<ContentDetail[]>(Horror, 'GET');
   const romance = useMovieFetch<ContentDetail[]>(Romance, 'GET');
 
   useEffect(() => {
-    if (!upLoad) {
-      setTimeout(() => setUpLoad(true), 2000);
+    if (upLoad === false) {
+      setTimeout(() => {
+        fetchAPIs();
+      }, 1000);
     }
   });
 
+  const fetchAPIs = async () => {
+    try {
+      console.log('데이터 패칭중 ...');
+      await Promise.all([
+        Animations,
+        netFlixMovieOriginals,
+        action,
+        ScienceFictionDatas,
+        documentary,
+        horror,
+        romance,
+      ]).then(() => {
+        setUpLoad(true);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
+      <div style={{ marginBottom: '100px' }} />
       {upLoad ? (
         <MainWrapper>
           <div>
-            <SliderName>높은 순위의 컨텐츠</SliderName>
-            {topRatedMovies?.length && (
+            <SliderName>애니메이션</SliderName>
+            {Animations && (
               <SliderContainer>
-                {topRatedMovies.map((movie) => {
+                {Animations.map((movie) => {
                   return <SliderItem key={movie.id} movie={movie} />;
                 })}
               </SliderContainer>
@@ -38,7 +60,7 @@ const Latest: FC = () => {
           </div>
           <div>
             <SliderName>넷플릭스 오리지널 영화</SliderName>
-            {netFlixMovieOriginals?.length && (
+            {netFlixMovieOriginals && (
               <SliderContainer>
                 {netFlixMovieOriginals.map((movie) => {
                   return <SliderItem key={movie.id} movie={movie} />;
@@ -47,10 +69,10 @@ const Latest: FC = () => {
             )}
           </div>
           <div>
-            <SliderName>코미디</SliderName>
-            {comedy?.length && (
+            <SliderName>SF 장르</SliderName>
+            {ScienceFictionDatas && (
               <SliderContainer>
-                {comedy.map((movie) => {
+                {ScienceFictionDatas.map((movie) => {
                   return <SliderItem key={movie.id} movie={movie} />;
                 })}
               </SliderContainer>
@@ -58,7 +80,7 @@ const Latest: FC = () => {
           </div>
           <div>
             <SliderName>호러, 공포</SliderName>
-            {horror?.length && (
+            {horror && (
               <SliderContainer>
                 {horror.map((movie) => {
                   return <SliderItem key={movie.id} movie={movie} />;
@@ -68,7 +90,7 @@ const Latest: FC = () => {
           </div>
           <div>
             <SliderName>로망스</SliderName>
-            {romance?.length && (
+            {romance && (
               <SliderContainer>
                 {romance.map((movie) => {
                   return <SliderItem key={movie.id} movie={movie} />;
@@ -78,7 +100,7 @@ const Latest: FC = () => {
           </div>
           <div>
             <SliderName>액션</SliderName>
-            {action?.length && (
+            {action && (
               <SliderContainer>
                 {action.map((movie) => {
                   return <SliderItem key={movie.id} movie={movie} />;
@@ -88,7 +110,7 @@ const Latest: FC = () => {
           </div>
           <div>
             <SliderName>다큐멘터리</SliderName>
-            {documentary?.length && (
+            {documentary && (
               <SliderContainer>
                 {documentary.map((movie) => {
                   return <SliderItem key={movie.id} movie={movie} />;
@@ -98,7 +120,7 @@ const Latest: FC = () => {
           </div>
         </MainWrapper>
       ) : (
-        <h1 style={{ display: 'flex', justifyContent: 'center', color: 'white' }}>로딩중</h1>
+        <h1 style={{ display: 'flex', justifyContent: 'center', color: 'white' }}>데이터 로딩중...</h1>
       )}
     </>
   );
