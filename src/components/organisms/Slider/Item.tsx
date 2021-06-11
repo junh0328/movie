@@ -42,13 +42,21 @@ function SliderItem(props: Props) {
     <SliderContext.Consumer>
       {({ elementRef }) => {
         return (
+          // movie.backdrop_path 가 없을 때 보여줄 컴포넌트 필요
           <Item
+            // onMouseOver={() => console.log('마우스 올라옴')}
             ref={elementRef}
             style={{
               display: 'flex',
               backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`,
+              // backgroundImage: ${(props: Props) => (props.movie.backdrop_path !== null ? `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`  : '' )}
             }}
           >
+            {/* {movie.backdrop_path ? (
+              <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} />
+            ) : (
+              <div>이미지가 없습니다</div>
+            )}*/}
             <div style={nameStyle}>
               {movie.title ? (
                 <b style={{ fontSize: '1rem', fontWeight: 'normal' }}>{movie.title}</b>

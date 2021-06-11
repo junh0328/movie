@@ -28,7 +28,6 @@ export const Western = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genre
 export const latestTV = `${BASE_URL}/movie/latest?api_key=${API_KEY}&language=en-US`;
 export const latestMovie = `${BASE_URL}/tv/latest?api_key=${API_KEY}&language=en-US`;
 
-//https://api.themoviedb.org/3/tv/latest?api_key=<<api_key>>&language=en-US
 // fetching movie details
 export const MovieDetail = (id: number) => `${BASE_URL}/movie/${id}?api_key=${API_KEY}`;
 

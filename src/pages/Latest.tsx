@@ -8,6 +8,26 @@ import useMovieFetch from '@/hooks/useMovieFetch';
 const Latest: FC = () => {
   const [upLoad, setUpLoad] = useState(false);
 
+  // 무한 스크롤을 위한 스크롤 이벤트 함수 만들기 (분리 전)
+  useEffect(() => {
+    if (upLoad) {
+      console.log('지금부터 스크롤이 작동합니다');
+      // 업로드 완료 상황을 기점으로 해당 함수를 사용할 수 있도록 만듬
+
+      const onScroll = () => {
+        const scrollHeight = document.documentElement.scrollHeight;
+        const scrollTop = document.documentElement.scrollTop;
+        const clientHeight = document.documentElement.clientHeight;
+
+        if (scrollTop + clientHeight >= scrollHeight) {
+          console.log('scrolled!');
+        }
+      };
+
+      window.addEventListener('scroll', onScroll);
+    }
+  }, [upLoad]);
+
   const Animations = useMovieFetch<ContentDetail[]>(Animation, 'GET');
   const netFlixMovieOriginals = useMovieFetch<ContentDetail[]>(NetFlixMovieOriginals, 'GET');
   const action = useMovieFetch<ContentDetail[]>(Action, 'GET');
@@ -26,7 +46,6 @@ const Latest: FC = () => {
 
   const fetchAPIs = async () => {
     try {
-      console.log('데이터 패칭중 ...');
       await Promise.all([
         Animations,
         netFlixMovieOriginals,
