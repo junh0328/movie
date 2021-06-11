@@ -1,11 +1,12 @@
 import { FC, useEffect, useState } from 'react';
 import { MainWrapper, SliderName } from './style';
+import Billboard from '@/components/organisms/Billboard';
 import { SliderContainer, SliderItem } from '@/components/organisms/Slider';
 import { ContentDetail } from '@/types/common';
 import { Action, Comedy, Documentary, Horror, NetFlixMovieOriginals, Romance, TopRated } from '@/apis';
 import useMovieFetch from '@/hooks/useMovieFetch';
 
-const Latest: FC = () => {
+const Slider2: FC = () => {
   const [upLoad, setUpLoad] = useState(false);
 
   const topRatedMovies = useMovieFetch<ContentDetail[]>(TopRated, 'GET');
@@ -24,6 +25,8 @@ const Latest: FC = () => {
 
   return (
     <>
+      <Billboard />
+
       {upLoad ? (
         <MainWrapper>
           <div>
@@ -104,4 +107,4 @@ const Latest: FC = () => {
   );
 };
 
-export default Latest;
+export default Slider2;

@@ -18,13 +18,13 @@ function HeaderLeft() {
         <Link to="/">홈</Link>
       </CustomMenuItem>
       <CustomMenuItem>
-        <Link to="/slider">TV 프로그램</Link>
+        <Link to="/genre/tv">TV 프로그램</Link>
       </CustomMenuItem>
       <CustomMenuItem>
-        <Link to="/users">영화</Link>
+        <Link to="/genre/movie">영화</Link>
       </CustomMenuItem>
       <CustomMenuItem>
-        <Link to="/about">최신</Link>
+        <Link to="/latest">최신</Link>
       </CustomMenuItem>
     </CustomMenu>
   );
@@ -53,13 +53,13 @@ function HeaderLeft() {
             <Link to="/">홈</Link>
           </li>
           <li>
-            <Link to="/slider">TV 프로그램</Link>
+            <Link to="/genre/tv">TV 프로그램</Link>
           </li>
           <li>
-            <Link to="/users">영화</Link>
+            <Link to="/genre/movie">영화</Link>
           </li>
           <li>
-            <Link to="/about">NEW! 요즘 대세 콘텐츠</Link>
+            <Link to="/latest">NEW! 요즘 대세 콘텐츠</Link>
           </li>
         </ul>
       )}
