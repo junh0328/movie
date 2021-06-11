@@ -6,27 +6,11 @@ import {
   fetchDocumentary,
   fetchHorror,
   fetchNetFlixMovieOriginals,
-  // fetchNetFlixOriginals,
   fetchRomance,
   fetchTopRated,
 } from '@/apis/movie';
 
 // 커스텀 함수
-/*
-  export const useFetchMovieGenre = (func: any) => {
-    const [data, setData] = useState<ContentDetail[]>([]);
-
-    useEffect(() => {
-      async () => {
-        const res = await func();
-        if (res) {
-          setData(res.results);
-        }
-      };
-    }, []);
-    return { result: data };
-  };
-*/
 
 export const useTopRated = () => {
   const [data, setData] = useState<ContentDetail[]>([]);
@@ -42,21 +26,6 @@ export const useTopRated = () => {
 
   return { topRatedMovies: data };
 };
-
-// export const useNetFlixOriginals = () => {
-//   const [data, setData] = useState<ContentDetail[]>([]);
-
-//   useEffect(() => {
-//     (async () => {
-//       const res = await fetchNetFlixOriginals();
-//       if (res) {
-//         setData(res.results);
-//       }
-//     })();
-//   }, []);
-
-//   return { NetFlixOriginals: data };
-// };
 
 export const useNetFlixOMovieOriginals = () => {
   const [data, setData] = useState<ContentDetail[]>([]);
