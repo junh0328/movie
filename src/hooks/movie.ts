@@ -1,3 +1,5 @@
+/* 다 합친 후에 없앨 hook */
+
 import { useState, useEffect } from 'react';
 import { ContentDetail } from '@/types/common';
 import {

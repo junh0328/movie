@@ -1,3 +1,5 @@
+/* 머지 후에 없앨 페이지 hooks/useMovieFetch 로 변경 */
+
 import axios from 'axios';
 import dotenv from 'dotenv';
 import { ContentPageResponse } from '@/types/common';

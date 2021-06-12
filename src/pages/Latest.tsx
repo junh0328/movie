@@ -20,7 +20,7 @@ import useMovieFetch from '@/hooks/useMovieFetch';
 
 const Latest: FC = () => {
   const [upLoad, setUpLoad] = useState<boolean>(false);
-  const [seconUpload, setSecondUpload] = useState<boolean>(false);
+  const [secondUpload, setSecondUpload] = useState<boolean>(false);
 
   // previous
   const Animations = useMovieFetch<ContentDetail[]>(Animation, 'GET');
@@ -67,7 +67,7 @@ const Latest: FC = () => {
 
   // 무한 스크롤을 위한 스크롤 이벤트 함수 만들기 (분리 전)
   useEffect(() => {
-    if (upLoad) {
+    if (upLoad && !secondUpload) {
       console.log('지금부터 스크롤이 작동합니다');
       // 업로드 완료 상황을 기점으로 해당 함수를 사용할 수 있도록 만듬
 
@@ -77,7 +77,6 @@ const Latest: FC = () => {
         const clientHeight = document.documentElement.clientHeight;
 
         if (scrollTop + clientHeight >= scrollHeight) {
-          console.log('scrolled!');
           fetchMoreApis();
           setSecondUpload(true);
         }
@@ -170,7 +169,7 @@ const Latest: FC = () => {
               </SliderContainer>
             )}
           </div>
-          {seconUpload && (
+          {secondUpload && (
             <>
               <div>
                 <SliderName>서부 장르</SliderName>

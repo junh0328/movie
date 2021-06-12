@@ -1,3 +1,5 @@
+/* hooks/useMovieFetch 로 대체 사용함 */
+
 import axios, { Method } from 'axios';
 
 export type ErrorType = { error?: 1 | true; message?: string };

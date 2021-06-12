@@ -22,3 +22,5 @@ export default function useHandleSearchModal() {
 
   return { scrolling, setScrolling, onScroll };
 }
+
+/* 다 합친 후에 없앨 hook */

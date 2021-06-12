@@ -1,3 +1,5 @@
+/* movies.ts 함수를 커스텀훅으로 변경(경민님 작업) */
+
 import { useState, useEffect } from 'react';
 import axios, { Method } from 'axios';
 
