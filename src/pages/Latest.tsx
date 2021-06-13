@@ -31,6 +31,9 @@ const Latest: FC = () => {
   const horror = useMovieFetch<ContentDetail[]>(Horror, 'GET');
   const romance = useMovieFetch<ContentDetail[]>(Romance, 'GET');
 
+  // previous 에 데이터들을 비동기로 설정하기 위해 한 가지 배열 promises에 담음
+  const promises = [Animations, netFlixMovieOriginals, action, ScienceFictionDatas, documentary, horror, romance];
+
   // next
   const WesternDatas = useMovieFetch<ContentDetail[]>(Western, 'GET');
   const WarDatas = useMovieFetch<ContentDetail[]>(War, 'GET');
@@ -47,17 +50,14 @@ const Latest: FC = () => {
     }
   });
 
+  /*
+  Promise.allSettled(promises).
+  then((results) => results.forEach((result) => console.log(result.status)));
+  */
+
   const fetchAPIs = async () => {
     try {
-      await Promise.all([
-        Animations,
-        netFlixMovieOriginals,
-        action,
-        ScienceFictionDatas,
-        documentary,
-        horror,
-        romance,
-      ]).then(() => {
+      await Promise.allSettled([promises]).then(() => {
         setUpLoad(true);
       });
     } catch (error) {
