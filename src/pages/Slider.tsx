@@ -1,6 +1,4 @@
 import { FC, useEffect, useState } from 'react';
-
-
 import { MainWrapper, SliderName } from './style';
 import Billboard from '@/components/organisms/Billboard';
 import { SliderContainer, SliderItem } from '@/components/organisms/Slider';
@@ -44,7 +42,6 @@ const Home: FC = () => {
                       movie={movie}
                       showModal={() => {
                         setSelectedContent(movie.id);
-                        console.log(movie.id);
                       }}
                     />
                   );
@@ -63,7 +60,6 @@ const Home: FC = () => {
                       movie={movie}
                       showModal={() => {
                         setSelectedContent(movie.id);
-                        console.log(movie.id);
                       }}
                     />
                   );
@@ -82,7 +78,6 @@ const Home: FC = () => {
                       movie={movie}
                       showModal={() => {
                         setSelectedContent(movie.id);
-                        console.log(movie.id);
                       }}
                     />
                   );
@@ -101,7 +96,6 @@ const Home: FC = () => {
                       movie={movie}
                       showModal={() => {
                         setSelectedContent(movie.id);
-                        console.log(movie.id);
                       }}
                     />
                   );
@@ -120,7 +114,6 @@ const Home: FC = () => {
                       movie={movie}
                       showModal={() => {
                         setSelectedContent(movie.id);
-                        console.log(movie.id);
                       }}
                     />
                   );
@@ -139,7 +132,6 @@ const Home: FC = () => {
                       movie={movie}
                       showModal={() => {
                         setSelectedContent(movie.id);
-                        console.log(movie.id);
                       }}
                     />
                   );
@@ -158,7 +150,6 @@ const Home: FC = () => {
                       movie={movie}
                       showModal={() => {
                         setSelectedContent(movie.id);
-                        console.log(movie.id);
                       }}
                     />
                   );
