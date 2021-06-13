@@ -21,10 +21,10 @@ function App(): JSX.Element {
             <Slider />
           </Route>
           <Route path="/genre/tv" exact>
-            <Slider />
+            <Slider2 />
           </Route>
           <Route path="/genre/movie" exact>
-            <Slider2 />
+            <Slider />
           </Route>
           <Route path="/latest" exact>
             <Latest />

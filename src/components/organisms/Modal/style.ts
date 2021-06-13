@@ -14,10 +14,10 @@ export const ModalWrap = styled.div`
   background-color: #181818;
   color: white;
   height: 80%;
-  width: 80%;
+  width: 75%;
   top: 10%;
   z-index: 10;
-  left: 10%;
+  left: 12%;
   position: fixed;
   display: flex;
   flex-wrap: wrap;

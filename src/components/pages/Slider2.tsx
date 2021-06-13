@@ -18,10 +18,12 @@ import {
 } from '@/apis';
 import useMovieFetch from '@/hooks/useMovieFetch';
 import Billboard from '@/components/organisms/Billboard';
+import Modal from '@/components/organisms/Modal';
 
 const Slider2: FC = () => {
   const [upLoad, setUpLoad] = useState<boolean>(false);
   const [secondUpload, setSecondUpload] = useState<boolean>(false);
+  const [selectedContent, setSelectedContent] = useState<number | undefined>(undefined);
 
   // previous
   const Animations = useMovieFetch<ContentDetail[]>(Animation, 'GET');
@@ -41,6 +43,9 @@ const Slider2: FC = () => {
   const FamilyDatas = useMovieFetch<ContentDetail[]>(Family, 'GET');
   const FantasyDatas = useMovieFetch<ContentDetail[]>(Fantasy, 'GET');
   const MusicDatas = useMovieFetch<ContentDetail[]>(Music, 'GET');
+
+  const nextPomises = [WesternDatas, WarDatas, FamilyDatas, FantasyDatas, MusicDatas];
+
   // etc ...
 
   useEffect(() => {
@@ -58,7 +63,7 @@ const Slider2: FC = () => {
 
   const fetchAPIs = async () => {
     try {
-      await Promise.allSettled([promises]).then(() => {
+      await Promise.allSettled(promises).then(() => {
         setUpLoad(true);
       });
     } catch (error) {
@@ -79,7 +84,6 @@ const Slider2: FC = () => {
 
         if (scrollTop + clientHeight >= scrollHeight) {
           fetchMoreApis();
-          setSecondUpload(true);
         }
       };
 
@@ -89,7 +93,9 @@ const Slider2: FC = () => {
 
   const fetchMoreApis = async () => {
     try {
-      await Promise.all([WesternDatas, WarDatas, FamilyDatas, FantasyDatas, MusicDatas]);
+      await Promise.allSettled(nextPomises).then(() => {
+        setSecondUpload(true);
+      });
     } catch (error) {
       console.error(error);
     }
@@ -105,7 +111,15 @@ const Slider2: FC = () => {
             {Animations && (
               <SliderContainer>
                 {Animations.map((movie) => {
-                  return <SliderItem key={movie.id} movie={movie} />;
+                  return (
+                    <SliderItem
+                      key={movie.id}
+                      movie={movie}
+                      showModal={() => {
+                        setSelectedContent(movie.id);
+                      }}
+                    />
+                  );
                 })}
               </SliderContainer>
             )}
@@ -115,7 +129,15 @@ const Slider2: FC = () => {
             {netFlixMovieOriginals && (
               <SliderContainer>
                 {netFlixMovieOriginals.map((movie) => {
-                  return <SliderItem key={movie.id} movie={movie} />;
+                  return (
+                    <SliderItem
+                      key={movie.id}
+                      movie={movie}
+                      showModal={() => {
+                        setSelectedContent(movie.id);
+                      }}
+                    />
+                  );
                 })}
               </SliderContainer>
             )}
@@ -125,7 +147,15 @@ const Slider2: FC = () => {
             {ScienceFictionDatas && (
               <SliderContainer>
                 {ScienceFictionDatas.map((movie) => {
-                  return <SliderItem key={movie.id} movie={movie} />;
+                  return (
+                    <SliderItem
+                      key={movie.id}
+                      movie={movie}
+                      showModal={() => {
+                        setSelectedContent(movie.id);
+                      }}
+                    />
+                  );
                 })}
               </SliderContainer>
             )}
@@ -135,7 +165,15 @@ const Slider2: FC = () => {
             {horror && (
               <SliderContainer>
                 {horror.map((movie) => {
-                  return <SliderItem key={movie.id} movie={movie} />;
+                  return (
+                    <SliderItem
+                      key={movie.id}
+                      movie={movie}
+                      showModal={() => {
+                        setSelectedContent(movie.id);
+                      }}
+                    />
+                  );
                 })}
               </SliderContainer>
             )}
@@ -145,7 +183,15 @@ const Slider2: FC = () => {
             {romance && (
               <SliderContainer>
                 {romance.map((movie) => {
-                  return <SliderItem key={movie.id} movie={movie} />;
+                  return (
+                    <SliderItem
+                      key={movie.id}
+                      movie={movie}
+                      showModal={() => {
+                        setSelectedContent(movie.id);
+                      }}
+                    />
+                  );
                 })}
               </SliderContainer>
             )}
@@ -155,7 +201,15 @@ const Slider2: FC = () => {
             {action && (
               <SliderContainer>
                 {action.map((movie) => {
-                  return <SliderItem key={movie.id} movie={movie} />;
+                  return (
+                    <SliderItem
+                      key={movie.id}
+                      movie={movie}
+                      showModal={() => {
+                        setSelectedContent(movie.id);
+                      }}
+                    />
+                  );
                 })}
               </SliderContainer>
             )}
@@ -165,7 +219,15 @@ const Slider2: FC = () => {
             {documentary && (
               <SliderContainer>
                 {documentary.map((movie) => {
-                  return <SliderItem key={movie.id} movie={movie} />;
+                  return (
+                    <SliderItem
+                      key={movie.id}
+                      movie={movie}
+                      showModal={() => {
+                        setSelectedContent(movie.id);
+                      }}
+                    />
+                  );
                 })}
               </SliderContainer>
             )}
@@ -177,7 +239,15 @@ const Slider2: FC = () => {
                 {WesternDatas && (
                   <SliderContainer>
                     {WesternDatas.map((movie) => {
-                      return <SliderItem key={movie.id} movie={movie} />;
+                      return (
+                        <SliderItem
+                          key={movie.id}
+                          movie={movie}
+                          showModal={() => {
+                            setSelectedContent(movie.id);
+                          }}
+                        />
+                      );
                     })}
                   </SliderContainer>
                 )}
@@ -187,7 +257,15 @@ const Slider2: FC = () => {
                 {WarDatas && (
                   <SliderContainer>
                     {WarDatas.map((movie) => {
-                      return <SliderItem key={movie.id} movie={movie} />;
+                      return (
+                        <SliderItem
+                          key={movie.id}
+                          movie={movie}
+                          showModal={() => {
+                            setSelectedContent(movie.id);
+                          }}
+                        />
+                      );
                     })}
                   </SliderContainer>
                 )}
@@ -197,7 +275,15 @@ const Slider2: FC = () => {
                 {FamilyDatas && (
                   <SliderContainer>
                     {FamilyDatas.map((movie) => {
-                      return <SliderItem key={movie.id} movie={movie} />;
+                      return (
+                        <SliderItem
+                          key={movie.id}
+                          movie={movie}
+                          showModal={() => {
+                            setSelectedContent(movie.id);
+                          }}
+                        />
+                      );
                     })}
                   </SliderContainer>
                 )}
@@ -207,7 +293,15 @@ const Slider2: FC = () => {
                 {FantasyDatas && (
                   <SliderContainer>
                     {FantasyDatas.map((movie) => {
-                      return <SliderItem key={movie.id} movie={movie} />;
+                      return (
+                        <SliderItem
+                          key={movie.id}
+                          movie={movie}
+                          showModal={() => {
+                            setSelectedContent(movie.id);
+                          }}
+                        />
+                      );
                     })}
                   </SliderContainer>
                 )}
@@ -217,7 +311,15 @@ const Slider2: FC = () => {
                 {MusicDatas && (
                   <SliderContainer>
                     {MusicDatas.map((movie) => {
-                      return <SliderItem key={movie.id} movie={movie} />;
+                      return (
+                        <SliderItem
+                          key={movie.id}
+                          movie={movie}
+                          showModal={() => {
+                            setSelectedContent(movie.id);
+                          }}
+                        />
+                      );
                     })}
                   </SliderContainer>
                 )}
@@ -228,6 +330,7 @@ const Slider2: FC = () => {
       ) : (
         <h1 style={{ display: 'flex', justifyContent: 'center', color: 'white' }}>데이터 로딩중...</h1>
       )}
+      {selectedContent && <Modal contentId={selectedContent} onClickHandler={() => setSelectedContent(undefined)} />}
     </>
   );
 };

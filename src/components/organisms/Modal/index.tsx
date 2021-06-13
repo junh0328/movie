@@ -6,7 +6,6 @@ import {
   ModalBar,
   ModalImage,
   ModalInfoWrapper,
-  // ModalOutWrapper,
   ModalTitle,
   ModalWrap,
   PlayButton,
@@ -36,7 +35,7 @@ const Modal = ({ contentId, onClickHandler }: { contentId: number; onClickHandle
 
   return content ? (
     // <ModalOutWrapper onClick={() => alert('clicked!')}>
-    <ModalWrap>
+    <ModalWrap style={{ overflow: 'auto' }}>
       <ModalImage alt={content.title} src={`https://image.tmdb.org/t/p/original/${content.backdrop_path}`} />
       <section style={{ paddingTop: '30%', paddingLeft: '4%' }}>
         <ModalTitle>{content.title}</ModalTitle>
@@ -56,9 +55,6 @@ const Modal = ({ contentId, onClickHandler }: { contentId: number; onClickHandle
             <IconButton iconName="check" />
             <IconButton iconName="like" />
             <IconButton iconName="dislike" />
-          </div>
-          <div>
-            <IconButton iconName="volume" />
           </div>
         </ButtonWrapper>
       </section>
