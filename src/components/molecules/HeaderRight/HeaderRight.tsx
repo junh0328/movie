@@ -9,6 +9,7 @@ import {
   NavElement,
   SearchInput,
   SearchWrapper,
+  SearchWrapMain,
   SecondaryNavigation,
   ToggleWrapper,
 } from './style';
@@ -20,11 +21,16 @@ import { ContentDetail } from '@/types/common';
 import { SearchQuery } from '@/apis';
 import { SearchModalWrapper } from './style';
 import usehandleOverFlow from '@/hooks/useHandleOverflow';
+import _ from 'lodash';
 
 const HeaderRight: React.FC = () => {
   const MenuStyle = useMemo(() => ({ padding: 20, width: 300, marginTop: 20 }), []);
   const BgStyle = useMemo(() => ({ background: 'white' }), []);
   const SpanStyle = useMemo(() => ({ marginRight: 10 }), []);
+  const noSearchStyle = useMemo(
+    () => ({ display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4rem' }),
+    [],
+  );
 
   // input 값 관리
   const [value, setValue] = useState('');
@@ -38,6 +44,7 @@ const HeaderRight: React.FC = () => {
   const [showOutButton, setShowOutButton] = useState(false);
   // input 태그 내부에 값 입력시 켜지는 모달 상태 관리
   const [showSearchModal, setShowSearchModal] = useState(false);
+  // query 문의 page 수를 관리
 
   const { hidden, show } = usehandleOverFlow();
 
@@ -56,23 +63,35 @@ const HeaderRight: React.FC = () => {
   // search API 사용 부분
   let datas = [];
   const fetch = async (query: string) => {
+    if (query.length === 0) return;
     try {
       const response = await axios.get(SearchQuery(query));
       datas = response.data.results;
+      // console.log(datas);
       setFetchedData(datas);
+
+      if (datas.length == 0) {
+        // console.log('빈배열입니다');
+        setFetchedData([]);
+      }
     } catch (error) {
       console.error(error);
     }
   };
 
+  const delayedQueryCall = useRef(_.debounce((q) => fetch(q), 1000)).current;
+
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+    delayedQueryCall(e.target.value);
     setShowOutButton(true);
     setShowSearchModal(true);
     hidden();
-    // key event가 1개 이상 작성됐을 때부터 기능 실행
-    if (e.target.value.length > 1) {
+    // key e가 1개 이상 작성됐을 때부터 기능 실행
+    if (e.target.value.length) {
       fetch(value);
+    } else {
+      return;
     }
   };
 
@@ -169,21 +188,14 @@ const HeaderRight: React.FC = () => {
       {/* search api를 모달을 통해 구현 */}
       {showSearchModal && (
         <SearchModalWrapper>
-          {fetchedData && (
-            <div
-              style={{
-                overflow: 'auto',
-                alignItems: 'center',
-                display: 'flex',
-                flexWrap: 'wrap',
-                paddingLeft: '4%',
-                paddingRight: '4%',
-              }}
-            >
+          {fetchedData?.length ? (
+            <SearchWrapMain>
               {fetchedData.map((f) => (
                 <SearchModal key={f.id} data={f} />
               ))}
-            </div>
+            </SearchWrapMain>
+          ) : (
+            <SearchWrapMain style={noSearchStyle}>검색 결과가 없습니다</SearchWrapMain>
           )}
         </SearchModalWrapper>
       )}

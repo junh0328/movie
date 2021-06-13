@@ -40,12 +40,12 @@ export type ContentDetail = {
   title: string;
   name: string;
   genres: Genre[];
-  overview: string;
+  overview: string | null;
   revenue: number;
   runtime: number;
   status: string;
   release_date: string;
-  backdrop_path: string;
+  backdrop_path: string | null;
   original_title?: string;
   original_language?: string;
   adult?: boolean;

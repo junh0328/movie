@@ -1,30 +1,11 @@
+/* 머지 후에 없앨 페이지 hooks/useMovieFetch 로 변경 */
+
 import axios from 'axios';
 import dotenv from 'dotenv';
 import { ContentPageResponse } from '@/types/common';
-import {
-  Action,
-  Comedy,
-  Documentary,
-  Horror,
-  NetFlixMovieOriginals,
-  // NetFlixOriginals,
-  Romance,
-  TopRated,
-} from '@/apis';
+import { Action, Comedy, Documentary, Horror, NetFlixMovieOriginals, Romance, TopRated } from '@/apis';
 
 dotenv.config();
-
-// 커스텀 함수
-/*
-  export const fetchingGenresData = async (genre: string) => {
-    try {
-      const { data } = await axios.get<ContentPageResponse>(genre);
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-*/
 
 export const fetchTopRated = async () => {
   try {
@@ -34,15 +15,6 @@ export const fetchTopRated = async () => {
     console.error(error);
   }
 };
-
-// export const fetchNetFlixOriginals = async () => {
-//   try {
-//     const { data } = await axios.get<ContentPageResponse>(NetFlixOriginals);
-//     return data;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
 
 export const fetchNetFlixMovieOriginals = async () => {
   try {

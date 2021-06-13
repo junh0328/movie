@@ -2,9 +2,9 @@ import React, { FC, useEffect, useState } from 'react';
 import axios from 'axios';
 import dotenv from 'dotenv';
 import { MainWrapper } from './style';
+import { NetFlixOriginals, TopRated } from '@/apis';
 import { Original, Toprate, ResponseType } from '@/types/common';
 import Billboard from '@/components/organisms/Billboard';
-import { NetFlixOriginals, TopRated } from '@/apis';
 import Modal from '@/components/organisms/Modal';
 
 dotenv.config();

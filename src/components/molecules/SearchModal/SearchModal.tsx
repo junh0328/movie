@@ -7,14 +7,16 @@ type Props = {
   data: ContentDetail;
 };
 
-function SearchModal({ data }: Props) {
+function SearchModal(props: Props) {
+  const { data } = props;
   const [selectedContent, setSelectedContent] = useState<number | undefined>(undefined);
   const selectContent = (id: number) => setSelectedContent(id);
+
   return (
     <>
       <ul key={data.id} style={{ listStyle: 'none', paddingLeft: 0, marginTop: 0, marginBottom: 0 }}>
-        <li key={data.id}>
-          <div style={{ width: 330 }}>
+        <li key={data.id} style={{ marginBottom: '3%' }}>
+          <div style={{ width: 290 }}>
             {data.backdrop_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/original/${data.backdrop_path}`}
@@ -33,7 +35,7 @@ function SearchModal({ data }: Props) {
                   paddingTop: 0,
                   cursor: 'pointer',
                 }}
-                onClick={() => alert('There is no backdrop_path')}
+                onClick={() => alert(`${data.id}\n${data.original_title}\nThere is no backdrop_path`)}
               >
                 <GithubOutlined />
               </div>

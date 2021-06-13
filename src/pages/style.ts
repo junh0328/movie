@@ -12,7 +12,7 @@ export const MainWrapper = styled.div`
 
 export const SliderName = styled.div`
   position: absolute;
-  margin-left: 4%;
+  margin-left: 5%;
   font-size: 1.6rem;
   font-weight: bolder;
 `;
