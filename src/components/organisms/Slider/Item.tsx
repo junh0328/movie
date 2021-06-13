@@ -5,6 +5,7 @@ import { ContentDetail } from '@/types/common';
 
 type Props = {
   movie: ContentDetail;
+  showModal?: () => void;
 };
 
 const Item = styled.div`
@@ -36,7 +37,7 @@ function SliderItem(props: Props) {
     }),
     [],
   );
-  const { movie } = props;
+  const { movie, showModal } = props;
 
   return (
     <SliderContext.Consumer>
@@ -51,6 +52,7 @@ function SliderItem(props: Props) {
               backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`,
               // backgroundImage: ${(props: Props) => (props.movie.backdrop_path !== null ? `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`  : '' )}
             }}
+            onClick={() => showModal && showModal()}
           >
             {/* {movie.backdrop_path ? (
               <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} />
