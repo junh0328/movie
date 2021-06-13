@@ -75,7 +75,7 @@ const Billboard = () => {
             playerVars: {
               start: 0,
               end: 60,
-              autoplay: 0,
+              autoplay: 1,
               mute: 0,
               rel: 0,
               modestbranding: 1,

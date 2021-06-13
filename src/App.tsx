@@ -1,14 +1,13 @@
 import 'antd/dist/antd.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Global, ThemeProvider } from '@emotion/react';
-import Home from '@/pages/Home';
-import Latest from '@/pages/Latest';
+import Slider from '@/components/pages/Slider';
+import Slider2 from '@/components/pages/Slider2';
+import Latest from '@/components/pages/Latest';
 import Footer from '@/components/organisms/Footer';
 import Header from '@/components/organisms/Header';
 import reset from '@/theme/globalStyle';
 import theme from '@/theme';
-import Slider from '@/pages/Slider';
-import Slider2 from '@/pages/Slider2';
 
 function App(): JSX.Element {
   return (
@@ -19,7 +18,7 @@ function App(): JSX.Element {
         <Header />
         <Switch>
           <Route path="/" exact>
-            <Home />
+            <Slider />
           </Route>
           <Route path="/genre/tv" exact>
             <Slider />
