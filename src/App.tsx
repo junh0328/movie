@@ -8,6 +8,7 @@ import Footer from '@/components/organisms/Footer';
 import Header from '@/components/organisms/Header';
 import reset from '@/theme/globalStyle';
 import theme from '@/theme';
+import Ex from './components/pages/Ex';
 
 function App(): JSX.Element {
   return (
@@ -28,6 +29,9 @@ function App(): JSX.Element {
           </Route>
           <Route path="/latest" exact>
             <Latest />
+          </Route>
+          <Route path="/Ex">
+            <Ex />
           </Route>
         </Switch>
         {/* components의 Footer */}

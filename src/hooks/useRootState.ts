@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { RootState } from '@/store';
+import { RootState } from '@/reducers';
 
 type StateSelector<T> = (state: RootState) => T;
 type EqualityFn<T> = (left: T, right: T) => boolean;
