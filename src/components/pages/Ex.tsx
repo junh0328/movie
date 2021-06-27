@@ -1,22 +1,28 @@
 import { RootState } from '@/reducers';
-import { FETCHING_MOVIES_REQUEST } from '@/reducers/movies';
+import { fetchingMoviesRequest } from '@/reducers/movies';
 import React from 'react';
 import { useEffect } from 'react';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Ex = () => {
-  const { movies } = useSelector((state: RootState) => state.movies);
+  const { movies, fetchMovieSuccess } = useSelector((state: RootState) => state.movies);
   const dispatch = useDispatch();
   const callMovie = useCallback(() => {
-    dispatch({
-      type: FETCHING_MOVIES_REQUEST,
-    });
-  }, []);
+    if (!movies.length) {
+      dispatch(fetchingMoviesRequest());
+    }
+  }, [movies.length]);
 
   useEffect(() => {
-    console.log('movies 배열 감지: ', movies);
+    console.log('movies 배열 감지: ', movies.length);
   }, [movies]);
+
+  useEffect(() => {
+    if (fetchMovieSuccess) {
+      alert('데이터 패칭 성공!');
+    }
+  }, [fetchMovieSuccess]);
 
   return (
     <div style={{ display: 'flex', height: '100vh', justifyContent: 'center', alignItems: 'center' }}>

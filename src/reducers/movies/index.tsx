@@ -56,6 +56,7 @@ export const fetchingMoviesFailure = (error: Error): FetchingMoviesFailure => ({
   error,
 });
 
+// 리듀서에 들어갈 액션에 대한 타입 정의 (액션 생성 함수)
 export type FetchingMovie =
   | ReturnType<typeof fetchingMoviesRequest>
   | ReturnType<typeof fetchingMoviesSuccess>
@@ -71,6 +72,7 @@ const movies = (state: movieInitialState = initialState, action: FetchingMovie) 
       }
       case FETCHING_MOVIES_SUCCESS: {
         draft.fetchMovieLoading = false;
+        draft.fetchMovieSuccess = true;
         draft.movies = draft.movies.concat(action.data);
         break;
       }
