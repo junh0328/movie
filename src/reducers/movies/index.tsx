@@ -1,6 +1,17 @@
+import { ContentDetail } from '@/types/common';
 import produce from 'immer';
 
-const initialState = {
+// intialState의 타입 정의
+export interface movieInitialState {
+  movies: ContentDetail[];
+
+  fetchMovieLoading: boolean;
+  fetchMovieSuccess: boolean;
+  fetchMovieFailure: null | Error;
+}
+
+// intialState 정의
+const initialState: movieInitialState = {
   movies: [],
 
   fetchMovieLoading: false,
@@ -8,11 +19,49 @@ const initialState = {
   fetchMovieFailure: null,
 };
 
+// 액션 정의
 export const FETCHING_MOVIES_REQUEST = 'FETCHING_MOVIES_REQUSET' as const;
 export const FETCHING_MOVIES_SUCCESS = 'FETCHING_MOVIES_SUCCESS' as const;
 export const FETCHING_MOVIES_FAILURE = 'FETCHING_MOVIES_FAILURE' as const;
 
-const movies = (state = initialState, action: any) =>
+// 액션에 대한 타입 정의
+export interface FetchingMoviesRequest {
+  type: typeof FETCHING_MOVIES_REQUEST;
+}
+
+export interface FetchingMoviesSuccess {
+  type: typeof FETCHING_MOVIES_SUCCESS;
+  movies: ContentDetail;
+  data: [];
+}
+
+export interface FetchingMoviesFailure {
+  type: typeof FETCHING_MOVIES_FAILURE;
+  error: Error;
+}
+
+// 리듀서에 들어갈 액션 타입에 대한 액션 생성 함수 정의 ( action: FetchingMovie ) 부분
+export const fetchingMoviesRequest = (): FetchingMoviesRequest => ({
+  type: FETCHING_MOVIES_REQUEST,
+});
+
+export const fetchingMoviesSuccess = (movies: ContentDetail, data: []): FetchingMoviesSuccess => ({
+  type: FETCHING_MOVIES_SUCCESS,
+  movies,
+  data,
+});
+
+export const fetchingMoviesFailure = (error: Error): FetchingMoviesFailure => ({
+  type: FETCHING_MOVIES_FAILURE,
+  error,
+});
+
+export type FetchingMovie =
+  | ReturnType<typeof fetchingMoviesRequest>
+  | ReturnType<typeof fetchingMoviesSuccess>
+  | ReturnType<typeof fetchingMoviesFailure>;
+
+const movies = (state: movieInitialState = initialState, action: FetchingMovie) =>
   produce(state, (draft) => {
     switch (action.type) {
       case FETCHING_MOVIES_REQUEST: {
@@ -25,13 +74,11 @@ const movies = (state = initialState, action: any) =>
         draft.movies = draft.movies.concat(action.data);
         break;
       }
-
       case FETCHING_MOVIES_FAILURE: {
         draft.fetchMovieSuccess = false;
         draft.fetchMovieFailure = action.error;
         break;
       }
-
       default:
         return state;
     }
