@@ -1,14 +1,14 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import { Animation } from '@/apis';
-
 import { ContentDetail } from '@/types/common';
 import { FETCHING_MOVIES_FAILURE, FETCHING_MOVIES_REQUEST, FETCHING_MOVIES_SUCCESS } from '@/reducers/movies';
 import axios from 'axios';
 
-// 내부에서 훅 함수를 못씀
+// 내부에서 훅 함수를 못씀 (useMovieFetch)
 async function fetchMoviesAPI() {
   try {
     const response = await axios.get(Animation);
+    console.log(response);
     const result = response.data.results;
     return result;
   } catch (err) {
