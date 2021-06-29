@@ -1,5 +1,5 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
-import { Animation } from '@/apis';
+import { imssi, Animation } from '@/apis';
 import { ContentDetail } from '@/types/common';
 import { FETCHING_MOVIES_FAILURE, FETCHING_MOVIES_REQUEST, FETCHING_MOVIES_SUCCESS } from '@/reducers/movies';
 import axios from 'axios';

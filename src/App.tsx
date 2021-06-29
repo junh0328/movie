@@ -25,7 +25,7 @@ function App(): JSX.Element {
             <Slider2 />
           </Route>
           <Route path="/genre/movie" exact>
-            <Slider />
+            <Slider2 />
           </Route>
           <Route path="/latest" exact>
             <Latest />

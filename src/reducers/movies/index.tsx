@@ -3,7 +3,7 @@ import produce from 'immer';
 
 // intialState의 타입 정의
 export interface movieInitialState {
-  movies: ContentDetail[];
+  movie: ContentDetail[];
 
   fetchMovieLoading: boolean;
   fetchMovieSuccess: boolean;
@@ -12,7 +12,7 @@ export interface movieInitialState {
 
 // intialState 정의
 const initialState: movieInitialState = {
-  movies: [],
+  movie: [],
 
   fetchMovieLoading: false,
   fetchMovieSuccess: false,
@@ -31,7 +31,7 @@ export interface FetchingMoviesRequest {
 
 export interface FetchingMoviesSuccess {
   type: typeof FETCHING_MOVIES_SUCCESS;
-  movies: ContentDetail;
+  movie: ContentDetail;
   data: [];
 }
 
@@ -45,9 +45,9 @@ export const fetchingMoviesRequest = (): FetchingMoviesRequest => ({
   type: FETCHING_MOVIES_REQUEST,
 });
 
-export const fetchingMoviesSuccess = (movies: ContentDetail, data: []): FetchingMoviesSuccess => ({
+export const fetchingMoviesSuccess = (movie: ContentDetail, data: []): FetchingMoviesSuccess => ({
   type: FETCHING_MOVIES_SUCCESS,
-  movies,
+  movie,
   data,
 });
 
@@ -73,7 +73,7 @@ const movies = (state: movieInitialState = initialState, action: FetchingMovie) 
       case FETCHING_MOVIES_SUCCESS: {
         draft.fetchMovieLoading = false;
         draft.fetchMovieSuccess = true;
-        draft.movies = draft.movies.concat(action.data);
+        draft.movie = draft.movie.concat(action.data);
         break;
       }
       case FETCHING_MOVIES_FAILURE: {

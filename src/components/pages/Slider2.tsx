@@ -19,6 +19,7 @@ import {
 import useMovieFetch from '@/hooks/useMovieFetch';
 import Billboard from '@/components/organisms/Billboard';
 import Modal from '@/components/organisms/Modal';
+import Main from '../organisms/Main';
 
 const Slider2: FC = () => {
   const [upLoad, setUpLoad] = useState<boolean>(false);
@@ -63,7 +64,7 @@ const Slider2: FC = () => {
 
   const fetchAPIs = async () => {
     try {
-      await Promise.allSettled(promises).then(() => {
+      await Promise.allSettled(nextPomises).then(() => {
         setUpLoad(true);
       });
     } catch (error) {
@@ -93,7 +94,7 @@ const Slider2: FC = () => {
 
   const fetchMoreApis = async () => {
     try {
-      await Promise.allSettled(nextPomises).then(() => {
+      await Promise.allSettled(promises).then(() => {
         setSecondUpload(true);
       });
     } catch (error) {
@@ -106,224 +107,21 @@ const Slider2: FC = () => {
       <Billboard />
       {upLoad ? (
         <MainWrapper>
-          <div>
-            <SliderName>애니메이션</SliderName>
-            {Animations && (
-              <SliderContainer>
-                {Animations.map((movie) => {
-                  return (
-                    <SliderItem
-                      key={movie.id}
-                      movie={movie}
-                      showModal={() => {
-                        setSelectedContent(movie.id);
-                      }}
-                    />
-                  );
-                })}
-              </SliderContainer>
-            )}
-          </div>
-          <div>
-            <SliderName>넷플릭스 오리지널 영화</SliderName>
-            {netFlixMovieOriginals && (
-              <SliderContainer>
-                {netFlixMovieOriginals.map((movie) => {
-                  return (
-                    <SliderItem
-                      key={movie.id}
-                      movie={movie}
-                      showModal={() => {
-                        setSelectedContent(movie.id);
-                      }}
-                    />
-                  );
-                })}
-              </SliderContainer>
-            )}
-          </div>
-          <div>
-            <SliderName>SF 장르</SliderName>
-            {ScienceFictionDatas && (
-              <SliderContainer>
-                {ScienceFictionDatas.map((movie) => {
-                  return (
-                    <SliderItem
-                      key={movie.id}
-                      movie={movie}
-                      showModal={() => {
-                        setSelectedContent(movie.id);
-                      }}
-                    />
-                  );
-                })}
-              </SliderContainer>
-            )}
-          </div>
-          <div>
-            <SliderName>호러, 공포</SliderName>
-            {horror && (
-              <SliderContainer>
-                {horror.map((movie) => {
-                  return (
-                    <SliderItem
-                      key={movie.id}
-                      movie={movie}
-                      showModal={() => {
-                        setSelectedContent(movie.id);
-                      }}
-                    />
-                  );
-                })}
-              </SliderContainer>
-            )}
-          </div>
-          <div>
-            <SliderName>로망스</SliderName>
-            {romance && (
-              <SliderContainer>
-                {romance.map((movie) => {
-                  return (
-                    <SliderItem
-                      key={movie.id}
-                      movie={movie}
-                      showModal={() => {
-                        setSelectedContent(movie.id);
-                      }}
-                    />
-                  );
-                })}
-              </SliderContainer>
-            )}
-          </div>
-          <div>
-            <SliderName>액션</SliderName>
-            {action && (
-              <SliderContainer>
-                {action.map((movie) => {
-                  return (
-                    <SliderItem
-                      key={movie.id}
-                      movie={movie}
-                      showModal={() => {
-                        setSelectedContent(movie.id);
-                      }}
-                    />
-                  );
-                })}
-              </SliderContainer>
-            )}
-          </div>
-          <div>
-            <SliderName>다큐멘터리</SliderName>
-            {documentary && (
-              <SliderContainer>
-                {documentary.map((movie) => {
-                  return (
-                    <SliderItem
-                      key={movie.id}
-                      movie={movie}
-                      showModal={() => {
-                        setSelectedContent(movie.id);
-                      }}
-                    />
-                  );
-                })}
-              </SliderContainer>
-            )}
-          </div>
+          <Main name={'전쟁'} genres={WarDatas} />
+          <Main name={'판타지'} genres={FantasyDatas} />
+          <Main name={'가족'} genres={FamilyDatas} />
+          <Main name={'서부'} genres={WesternDatas} />
+          <Main name={'음악'} genres={MusicDatas} />
+
           {secondUpload && (
             <>
-              <div>
-                <SliderName>서부 장르</SliderName>
-                {WesternDatas && (
-                  <SliderContainer>
-                    {WesternDatas.map((movie) => {
-                      return (
-                        <SliderItem
-                          key={movie.id}
-                          movie={movie}
-                          showModal={() => {
-                            setSelectedContent(movie.id);
-                          }}
-                        />
-                      );
-                    })}
-                  </SliderContainer>
-                )}
-              </div>
-              <div>
-                <SliderName>전쟁 장르</SliderName>
-                {WarDatas && (
-                  <SliderContainer>
-                    {WarDatas.map((movie) => {
-                      return (
-                        <SliderItem
-                          key={movie.id}
-                          movie={movie}
-                          showModal={() => {
-                            setSelectedContent(movie.id);
-                          }}
-                        />
-                      );
-                    })}
-                  </SliderContainer>
-                )}
-              </div>
-              <div>
-                <SliderName>가족 장르</SliderName>
-                {FamilyDatas && (
-                  <SliderContainer>
-                    {FamilyDatas.map((movie) => {
-                      return (
-                        <SliderItem
-                          key={movie.id}
-                          movie={movie}
-                          showModal={() => {
-                            setSelectedContent(movie.id);
-                          }}
-                        />
-                      );
-                    })}
-                  </SliderContainer>
-                )}
-              </div>
-              <div>
-                <SliderName>판타지 장르</SliderName>
-                {FantasyDatas && (
-                  <SliderContainer>
-                    {FantasyDatas.map((movie) => {
-                      return (
-                        <SliderItem
-                          key={movie.id}
-                          movie={movie}
-                          showModal={() => {
-                            setSelectedContent(movie.id);
-                          }}
-                        />
-                      );
-                    })}
-                  </SliderContainer>
-                )}
-              </div>
-              <div>
-                <SliderName>음악 장르</SliderName>
-                {MusicDatas && (
-                  <SliderContainer>
-                    {MusicDatas.map((movie) => {
-                      return (
-                        <SliderItem
-                          key={movie.id}
-                          movie={movie}
-                          showModal={() => {
-                            setSelectedContent(movie.id);
-                          }}
-                        />
-                      );
-                    })}
-                  </SliderContainer>
-                )}
-              </div>
+              <Main name={'넷플릭스 오리지널'} genres={netFlixMovieOriginals} />
+              <Main name={'SF 장르'} genres={ScienceFictionDatas} />
+              <Main name={'호러, 공포'} genres={horror} />
+              <Main name={'로망스'} genres={romance} />
+              <Main name={'에니메이션'} genres={Animations} />
+              <Main name={'액션'} genres={action} />
+              <Main name={'다큐멘터리'} genres={documentary} />
             </>
           )}
         </MainWrapper>

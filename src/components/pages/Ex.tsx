@@ -8,17 +8,17 @@ import { SliderContainer, SliderItem } from '../organisms/Slider';
 import { MainWrapper } from './style';
 
 const Ex = () => {
-  const { movies } = useSelector((state: RootState) => state.movies);
+  const { movie } = useSelector((state: RootState) => state.movies);
   const dispatch = useDispatch();
   const callMovie = useCallback(() => {
-    if (!movies.length) {
+    if (!movie.length) {
       dispatch(fetchingMoviesRequest());
     }
-  }, [movies.length]);
+  }, [movie.length]);
 
   useEffect(() => {
-    console.log('movies 배열 감지: ', movies);
-  }, [movies]);
+    console.log('movie 배열 감지: ', movie);
+  }, [movie]);
 
   return (
     <>
@@ -28,10 +28,10 @@ const Ex = () => {
         </button>
       </div>
       <MainWrapper>
-        {movies.length ? (
+        {movie.length ? (
           <SliderContainer>
-            {movies.map((movie) => {
-              return <SliderItem key={movie.id} movie={movie} />;
+            {movie.map((m) => {
+              return <SliderItem key={m.id} movie={m} />;
             })}
           </SliderContainer>
         ) : (
