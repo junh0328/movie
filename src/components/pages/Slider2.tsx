@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { MainWrapper, SliderName } from './style';
-import { SliderContainer, SliderItem } from '@/components/organisms/Slider';
+import { MainWrapper } from './style';
 import { ContentDetail } from '@/types/common';
 import {
   Action,
@@ -45,7 +44,7 @@ const Slider2: FC = () => {
   const FantasyDatas = useMovieFetch<ContentDetail[]>(Fantasy, 'GET');
   const MusicDatas = useMovieFetch<ContentDetail[]>(Music, 'GET');
 
-  const nextPomises = [WesternDatas, WarDatas, FamilyDatas, FantasyDatas, MusicDatas];
+  const nextPromises = [WesternDatas, WarDatas, FamilyDatas, FantasyDatas, MusicDatas];
 
   // etc ...
 
@@ -64,7 +63,7 @@ const Slider2: FC = () => {
 
   const fetchAPIs = async () => {
     try {
-      await Promise.allSettled(nextPomises).then(() => {
+      await Promise.allSettled(nextPromises).then(() => {
         setUpLoad(true);
       });
     } catch (error) {
