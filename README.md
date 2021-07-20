@@ -55,15 +55,16 @@
 
 |                                   검색 API                                    |
 | :---------------------------------------------------------------------------: |
-| <video width="500" src="./images/search.mov" autoplay type="video/quicktime"> |
+| <video width="500" src="https://user-images.githubusercontent.com/54658162/126291866-34d827f2-3c08-4fbc-bb96-b9a4e51a9361.mov" autoplay type="video/quicktime"> |
 
 |                                마우스 스크롤 이벤트                                |
 | :--------------------------------------------------------------------------------: |
-| <video width="500" src="./images/scrollEvent.mov" autoplay type="video/quicktime"> |
+| <video width="500" src="https://user-images.githubusercontent.com/54658162/126292005-f3335d1c-4c6f-4422-b747-3d365c58287b.mov
+v" autoplay type="video/quicktime"> |
 
 |                                    반응형 작업                                    |
 | :-------------------------------------------------------------------------------: |
-| <video width="400" src="./images/responsive.mov" autoplay type="video/quicktime"> |
+| <video width="400" src="https://user-images.githubusercontent.com/54658162/126291538-862f5f9c-c264-4c95-b85d-d0f094ebe36c.mov" autoplay type="video/quicktime"> |
 
 </details>
 
@@ -77,7 +78,7 @@
 
 |                                    react-youtube                                    |
 | :---------------------------------------------------------------------------------: |
-| <video width="500" src="./images/reactYoutube.mov" autoplay type="video/quicktime"> |
+| <video width="500" src="https://user-images.githubusercontent.com/54658162/126291127-b49b006b-9a83-4d44-8203-6892a2abf176.mov" autoplay type="video/quicktime"> |
 
 </details>
 
@@ -88,7 +89,7 @@
 
 |                                  모달 적용                                   |
 | :--------------------------------------------------------------------------: |
-| <video width="400" src="./images/modal.mov" autoplay type="video/quicktime"> |
+| <video width="400" src="https://user-images.githubusercontent.com/54658162/126291310-dfa525c3-5d42-48c0-9576-461e5b833a75.mov" autoplay type="video/quicktime"> |
 
 </details>
 
@@ -102,7 +103,8 @@
 
 |                                 슬라이더 적용                                 |
 | :---------------------------------------------------------------------------: |
-| <video width="500" src="./images/slider.mov" autoplay type="video/quicktime"> |
+| <video width="500" src="https://user-images.githubusercontent.com/54658162/126291474-a0732cdd-9d69-4d57-9123-6e4df8767d08.mov
+" autoplay type="video/quicktime"> |
 
 </details>
 
