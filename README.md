@@ -108,6 +108,12 @@
 
 <br/>
 
+# 결과물 보기
+
+https://jovial-archimedes-953074.netlify.app/genre/movie
+
+<br/>
+
 # 협업 관련 정리
 
 ### <a href="https://www.notion.so/1-NETFLIX-CLONE-17d936ddaa25400db92bce6cda0658ee">노션 바로가기</a>
