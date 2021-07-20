@@ -110,7 +110,7 @@
 
 # 결과물 보기
 
-https://jovial-archimedes-953074.netlify.app/genre/movie
+https://jovial-archimedes-953074.netlify.app/
 
 <br/>
 
