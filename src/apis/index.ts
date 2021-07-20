@@ -1,4 +1,4 @@
-export const API_KEY = process.env.REACT_APP_API;
+export const API_KEY = 'b6e66a75ceca7996c5772ddd0656dd1b';
 export const BASE_URL = `https://api.themoviedb.org/3`;
 
 // fetching each genres number
