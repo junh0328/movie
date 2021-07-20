@@ -2,6 +2,7 @@ import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import { Adventure, Horror } from '@/apis';
 import { ContentDetail } from '@/types/common';
 import {
+  FetchingMoviesRequest,
   FETCHING_ADVENTURE_FAILURE,
   FETCHING_ADVENTURE_REQUEST,
   FETCHING_ADVENTURE_SUCCESS,
@@ -30,7 +31,8 @@ type resultType = {
   result: ContentDetail[];
 };
 
-function* fetchMovies(action: any) {
+function* fetchMovies(action: FetchingMoviesRequest) {
+  console.log(action);
   try {
     const result: resultType = yield call(fetchMoviesAPI, action.data);
     yield put({
