@@ -53,18 +53,17 @@
 <details>
 <summary>구현 내용 보기</summary>
 
-|                                   검색 API                                    |
-| :---------------------------------------------------------------------------: |
-| <video width="500" src="https://user-images.githubusercontent.com/54658162/126291866-34d827f2-3c08-4fbc-bb96-b9a4e51a9361.mov" autoplay type="video/quicktime"/> |
+|                                                                                       검색 API                                                                                       |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <video alt="검색 API 적용" width="500" src="https://user-images.githubusercontent.com/54658162/126291866-34d827f2-3c08-4fbc-bb96-b9a4e51a9361.mov" autoplay type="video/quicktime"/> |
 
-|                                마우스 스크롤 이벤트                                |
-| :--------------------------------------------------------------------------------: |
-| <video width="500" src="https://user-images.githubusercontent.com/54658162/126292005-f3335d1c-4c6f-4422-b747-3d365c58287b.mov
-v" autoplay type="video/quicktime"/> |
+|                                                                                       마우스 스크롤 이벤트                                                                                       |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <video alt="추가 영화 데이터 가져오기" width="500" src="https://user-images.githubusercontent.com/54658162/126292005-f3335d1c-4c6f-4422-b747-3d365c58287b.mov" autoplay type="video/quicktime"/> |
 
-|                                    반응형 작업                                    |
-| :-------------------------------------------------------------------------------: |
-| <video width="400" src="https://user-images.githubusercontent.com/54658162/126291538-862f5f9c-c264-4c95-b85d-d0f094ebe36c.mov" autoplay type="video/quicktime"/> |
+|                                                                                    반응형 작업                                                                                     |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <video alt="반응형 작업" width="400" src="https://user-images.githubusercontent.com/54658162/126291538-862f5f9c-c264-4c95-b85d-d0f094ebe36c.mov" autoplay type="video/quicktime"/> |
 
 </details>
 
@@ -76,9 +75,9 @@ v" autoplay type="video/quicktime"/> |
 <details>
 <summary>구현 내용 보기</summary>
 
-|                                    react-youtube                                    |
-| :---------------------------------------------------------------------------------: |
-| <video width="500" src="https://user-images.githubusercontent.com/54658162/126291127-b49b006b-9a83-4d44-8203-6892a2abf176.mov" autoplay type="video/quicktime"/> |
+|                                                                                       react-youtube                                                                                       |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <video alt="리액트 유튜브 적용" width="500" src="https://user-images.githubusercontent.com/54658162/126291127-b49b006b-9a83-4d44-8203-6892a2abf176.mov" autoplay type="video/quicktime"/> |
 
 </details>
 
@@ -87,9 +86,9 @@ v" autoplay type="video/quicktime"/> |
 <details>
 <summary>구현 내용 보기</summary>
 
-|                                  모달 적용                                   |
-| :--------------------------------------------------------------------------: |
-| <video width="400" src="https://user-images.githubusercontent.com/54658162/126291310-dfa525c3-5d42-48c0-9576-461e5b833a75.mov" autoplay type="video/quicktime"/> |
+|                                                                                    모달 적용                                                                                     |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <video alt="모달 적용" width="400" src="https://user-images.githubusercontent.com/54658162/126291310-dfa525c3-5d42-48c0-9576-461e5b833a75.mov" autoplay type="video/quicktime"/> |
 
 </details>
 
@@ -101,10 +100,9 @@ v" autoplay type="video/quicktime"/> |
 <details>
 <summary>구현 내용 보기</summary>
 
-|                                 슬라이더 적용                                 |
-| :---------------------------------------------------------------------------: |
-| <video width="500" src="https://user-images.githubusercontent.com/54658162/126291474-a0732cdd-9d69-4d57-9123-6e4df8767d08.mov
-" autoplay type="video/quicktime"/> |
+|                                                                                    슬라이더 적용                                                                                     |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <video alt="슬라이더 적용" width="500" src="https://user-images.githubusercontent.com/54658162/126291474-a0732cdd-9d69-4d57-9123-6e4df8767d08.mov" autoplay type="video/quicktime"/> |
 
 </details>
 
